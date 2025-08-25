@@ -1,0 +1,456 @@
+{% extends 'admin_templates/base_template.html' %}
+{% block title %}
+Staff Update
+{% endblock title %}
+
+{% block custom_css %}
+<style>
+    /* Animation for form elements */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animated-form {
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .form-group {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .form-group:nth-child(1) { animation-delay: 0.1s; }
+    .form-group:nth-child(2) { animation-delay: 0.2s; }
+    .form-group:nth-child(3) { animation-delay: 0.3s; }
+    .form-group:nth-child(4) { animation-delay: 0.4s; }
+    .form-group:nth-child(5) { animation-delay: 0.5s; }
+    .form-group:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Enhanced card styling */
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .card-header {
+        background: linear-gradient(120deg, #4361ee, #3a0ca3);
+        color: white;
+        border-bottom: none;
+        padding: 20px 25px;
+    }
+
+    .card-header h4 {
+        margin: 0;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        color: white !important; /* Force white color */
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Add subtle text shadow for better visibility */
+    }
+
+    .card-header h4 i {
+        margin-right: 10px;
+        font-size: 1.3rem;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    /* Form enhancements */
+    .form-group {
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    label {
+        font-weight: 600;
+        color: #343a40;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 12px 15px;
+        transition: all 0.3s;
+        font-size: 15px;
+        box-shadow: none;
+    }
+
+    .form-control:focus {
+        border-color: #4361ee;
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+    }
+
+    /* Button styling */
+    .btn-primary {
+        background: linear-gradient(120deg, #4361ee, #3a0ca3);
+        border: none;
+        border-radius: 8px;
+        padding: 12px 30px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+    }
+
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: 0.5s;
+    }
+
+    .btn-primary:hover::before {
+        left: 100%;
+    }
+
+    /* Alert styling */
+    .alert-danger {
+        border-radius: 8px;
+        border: none;
+        background-color: #ffebee;
+        color: #d32f2f;
+        padding: 12px 15px;
+        margin-top: 8px;
+        animation: shake 0.5s ease-in-out;
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%, 60% { transform: translateX(-5px); }
+        40%, 80% { transform: translateX(5px); }
+    }
+
+    /* Image preview styling */
+    .image-preview-container {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .current-image {
+        max-width: 100%;
+        max-height: 250px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        border: 2px solid #e9ecef;
+        padding: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .current-image:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .image-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .image-card .card-body {
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Success message */
+    .success-message {
+        display: none;
+        background: #4caf50;
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 20px;
+        animation: fadeIn 0.5s;
+    }
+
+    /* Additional info section */
+    .additional-info {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 30px;
+        border-left: 4px solid #4361ee;
+    }
+
+    .additional-info h5 {
+        color: #4361ee;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .additional-info h5 i {
+        margin-right: 10px;
+    }
+
+    .additional-info ul {
+        padding-left: 20px;
+        margin-bottom: 0;
+    }
+
+    .additional-info li {
+        margin-bottom: 8px;
+        color: #6c757d;
+    }
+
+    /* File input styling */
+    .custom-file {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .custom-file-input {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        margin: 0;
+        opacity: 0;
+    }
+
+    .custom-file-label {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1;
+        height: calc(2.25rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        transition: all 0.3s;
+    }
+
+    .custom-file-input:focus ~ .custom-file-label {
+        border-color: #4361ee;
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+    }
+
+    .custom-file-label::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+        display: block;
+        height: calc(calc(2.25rem + 2px) - 2px);
+        padding: 0.375rem 0.75rem;
+        line-height: 1.5;
+        color: #495057;
+        content: "Browse";
+        background-color: #e9ecef;
+        border-left: 2px solid #e9ecef;
+        border-radius: 0 8px 8px 0;
+    }
+</style>
+{% endblock custom_css %}
+
+{% block page_title %}
+Staff Update
+{% endblock page_title %}
+
+{% block page_content %}
+
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+        <div class="card animated-form">
+            <div class="card-header">
+                <h4><i class="fas fa-user-tie"></i> Update Staff Member</h4>
+            </div>
+            <div class="card-body">
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i> Staff member updated successfully!
+                </div>
+                
+                <form method="post" enctype="multipart/form-data" id="staffForm">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.name }}">
+                            {{ field.label }}
+                            {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                        </label>
+                        
+                        <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" 
+                               id="{{ field.name }}" class="form-control" 
+                               value="{{ field.value|default_if_none:'' }}"
+                               {% if field.field.widget.attrs.placeholder %}placeholder="{{ field.field.widget.attrs.placeholder }}"{% endif %}>
+                        
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                        
+                        {% if field.errors %}
+                            <div class="alert alert-danger" style="margin:10px">
+                                <i class="fas fa-exclamation-circle"></i> {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    
+                    <!-- Profile Image Upload -->
+                    <div class="form-group">
+                        <label for="profile_pic">Profile Image</label>
+                        
+                        <div class="custom-file">
+                            <input type="file" name="profile_pic" id="profile极速_pic" class="custom-file-input" 
+                                   onchange="previewImage(this)">
+                            <label class="custom-file-label" for="profile_pic">Choose new profile picture</label>
+                        </div>
+                        
+                        {% if staffuser.profile_pic %}
+                        <div class="image-card">
+                            <div class="card-body">
+                                <label>Current Profile Image</label>
+                                <div class="image-preview-container">
+                                    <img src="{{ staffuser.profile_pic }}" class="current-image" alt="Current profile image">
+                                </div>
+                                <small class="text-muted">Current profile picture</small>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> UPDATE STAFF MEMBER
+                    </button>
+                </form>
+                
+                <div class="additional-info">
+                    <h5><i class="fas fa-lightbulb"></i> Update Tips</h5>
+                    <ul>
+                        <li>Review all information before updating</li>
+                        <li>Upload a new profile picture only if you want to replace the current one</li>
+                        <li>Ensure email address is valid and correctly formatted</li>
+                        <li>Double-check username for any typos</li>
+                        <li>Consider if password reset is needed for security</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
+
+{% block custom_js %}
+<script>
+    // Image preview functionality for new file selection
+    function previewImage(input) {
+        const fileLabel = input.nextElementSibling;
+        
+        if (input.files && input.files[0]) {
+            fileLabel.textContent = input.files[0].name;
+            
+            // Show preview of new image
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // Create or update preview image
+                let previewContainer = document.querySelector('.image-preview-container');
+                if (!previewContainer) {
+                    previewContainer = document.createElement('div');
+                    previewContainer.className = 'image-preview-container';
+                    input.parentNode.parentNode.appendChild(previewContainer);
+                }
+                
+                const newImagePreview = document.createElement('img');
+                newImagePreview.src = e.target.result;
+                newImagePreview.className = 'current-image';
+                newImagePreview.alt = 'New profile image preview';
+                newImagePreview.style.marginTop = '15px';
+                
+                previewContainer.innerHTML = '';
+                previewContainer.appendChild(newImagePreview);
+                
+                const previewLabel = document.createElement('small');
+                previewLabel.className = 'text-muted';
+                previewLabel.textContent = 'New profile picture preview';
+                previewContainer.appendChild(previewLabel);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    // Form submission handling
+    document.getElementById('staffForm').addEventListener('submit', function(e) {
+        // You could add additional validation here
+        
+        // For demo purposes, let's show success message
+        // In a real application, this would be handled by the backend
+        e.preventDefault();
+        
+        // Simulate successful submission
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'block';
+        
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth' });
+        
+        // In a real application, you would submit the form to the server
+        // For now, we'll just simulate a delay and then submit
+        setTimeout(() => {
+            this.submit();
+        }, 1500);
+    });
+    
+    // Animate form elements on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const formGroups = document.querySelectorAll('.form-group');
+        
+        formGroups.forEach((group, index) => {
+            group.style.animationDelay = `${0.1 + (index * 0.1)}s`;
+        });
+        
+        // Update custom file input labels to show selected file name
+        const fileInputs = document.querySelectorAll('.custom-file-input');
+        fileInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                let fileName = this.value.split('\\').pop();
+                if (fileName) {
+                    this.nextElementSibling.textContent = fileName;
+                }
+            });
+        });
+    });
+</script>
+{% endblock custom_js %}

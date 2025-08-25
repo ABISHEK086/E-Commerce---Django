@@ -1,0 +1,448 @@
+{% extends 'admin_templates/base_template.html' %}
+{% load static %}
+
+{% block title %}Features & Settings{% endblock %}
+
+{% block page_title %}Features & Settings Management{% endblock %}
+
+{% block page_content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Features & Settings</h4>
+                </div>
+                <div class="card-body">
+                    
+                    <!-- User Profile Section -->
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <h5><i class="fas fa-user-circle"></i> User Profile</h5>
+                            <div class="card">
+                                <div class="card-body">
+                                    <form id="profilePhotoForm" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-2 text-center">
+                                                <img id="profileImage" 
+                                                     src="{% if request.user.profile_picture %}{{ request.user.profile_picture.url }}{% else %}{% static '/img/avatar/avatar-1.png' %}{% endif %}" 
+                                                     class="img-fluid rounded-circle" 
+                                                     style="width: 100px; height: 100px; object-fit: cover;"
+                                                     alt="Profile Picture">
+                                                
+                                                <!-- Hidden file input -->
+                                                <input type="file" id="profilePhotoInput" name="profile_picture" accept="image/*" style="display: none;">
+                                                
+                                                <!-- Upload button -->
+                                                <button type="button" class="btn btn-sm btn-primary mt-2" onclick="document.getElementById('profilePhotoInput').click()">
+                                                    <i class="fas fa-upload"></i> Upload Photo
+                                                </button>
+                                                
+                                                <!-- Upload progress (hidden by default) -->
+                                                <div id="uploadProgress" class="progress mt-2" style="display: none;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-10">
+                                                <h6>User Information</h6>
+                                                <table class="table table-sm">
+                                                    <tr>
+                                                        <th>Username:</th>
+                                                        <td>{{ request.user.username }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Email:</th>
+                                                        <td>{{ request.user.email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>First Name:</th>
+                                                        <td>{{ request.user.first_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Last Name:</th>
+                                                        <td>{{ request.user.last_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Last Login:</th>
+                                                        <td>{{ request.user.last_login }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Date Joined:</th>
+                                                        <td>{{ request.user.date_joined }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>User Type:</th>
+                                                        <td>
+                                                            {% if request.user.user_type == 1 %}
+                                                                <span class="badge badge-primary">Super Admin</span>
+                                                            {% elif request.user.user_type == 2 %}
+                                                                <span class="badge badge-info">Staff</span>
+                                                            {% elif request.user.user_type == 3 %}
+                                                                <span class="badge badge-warning">Merchant</span>
+                                                            {% elif request.user.user_type == 4 %}
+                                                                <span class="badge badge-success">Customer</span>
+                                                            {% else %}
+                                                                <span class="badge badge-secondary">Unknown</span>
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Account Status:</th>
+                                                        <td>
+                                                            {% if request.user.is_active %}
+                                                                <span class="badge badge-success">Active</span>
+                                                            {% else %}
+                                                                <span class="badge badge-danger">Inactive</span>
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Settings Section -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-cog"></i> System Settings</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="systemSettingsForm">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>Store Name</label>
+                                            <input type="text" class="form-control" name="store_name" value="SuperStore">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Admin Email</label>
+                                            <input type="email" class="form-control" value="{{ request.user.email }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Current Version</label>
+                                            <input type="text" class="form-control" value="v1.0.0" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Timezone</label>
+                                            <select class="form-control" name="timezone">
+                                                <option value="UTC">UTC</option>
+                                                <option value="EST">EST</option>
+                                                <option value="PST">PST</option>
+                                                <option value="IST" selected>IST (India)</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" onclick="saveSystemSettings()">
+                                            <i class="fas fa-save"></i> Save Settings
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-toggle-on"></i> Feature Management</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="featureSettingsForm">
+                                        {% csrf_token %}
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" name="email_notifications" id="emailNotifications" checked>
+                                            <label class="form-check-label" for="emailNotifications">
+                                                <i class="fas fa-envelope"></i> Email Notifications
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" name="sms_notifications" id="smsNotifications">
+                                            <label class="form-check-label" for="smsNotifications">
+                                                <i class="fas fa-sms"></i> SMS Notifications
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" name="inventory_alerts" id="inventoryAlerts" checked>
+                                            <label class="form-check-label" for="inventoryAlerts">
+                                                <i class="fas fa-box"></i> Low Inventory Alerts
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" name="order_alerts" id="orderAlerts" checked>
+                                            <label class="form-check-label" for="orderAlerts">
+                                                <i class="fas fa-shopping-cart"></i> New Order Alerts
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" name="user_registration" id="userRegistration" checked>
+                                            <label class="form-check-label" for="userRegistration">
+                                                <i class="fas fa-user-plus"></i> User Registration
+                                            </label>
+                                        </div>
+                                        <button type="button" class="btn btn-success" onclick="updateFeatures()">
+                                            <i class="fas fa-sync"></i> Update Features
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Settings -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-shield-alt"></i> Security Settings</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form id="passwordForm">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label><i class="fas fa-key"></i> Change Password</label>
+                                                    <input type="password" class="form-control mb-2" name="current_password" placeholder="Current Password" required>
+                                                    <input type="password" class="form-control mb-2" name="new_password" placeholder="New Password" required>
+                                                    <input type="password" class="form-control mb-2" name="confirm_password" placeholder="Confirm New Password" required>
+                                                    <button type="button" class="btn btn-warning" onclick="updatePassword()">
+                                                        <i class="fas fa-lock"></i> Update Password
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <form id="securitySettingsForm">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label><i class="fas fa-mobile-alt"></i> Two-Factor Authentication</label>
+                                                    <div class="form-check form-switch mb-2">
+                                                        <input class="form-check-input" type="checkbox" name="two_factor_auth" id="twoFactorAuth">
+                                                        <label class="form-check-label" for="twoFactorAuth">
+                                                            Enable 2FA
+                                                        </label>
+                                                    </div>
+                                                    <small class="text-muted">Add an extra layer of security to your account</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><i class="fas fa-clock"></i> Session Timeout</label>
+                                                    <select class="form-control" name="session_timeout">
+                                                        <option value="15">15 minutes</option>
+                                                        <option value="30">30 minutes</option>
+                                                        <option value="60" selected>1 hour</option>
+                                                        <option value="240">4 hours</option>
+                                                        <option value="0">Never (Not Recommended)</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><i class="fas fa-history"></i> Login History</label>
+                                                    <div class="alert alert-info">
+                                                        Last successful login: {{ request.user.last_login }}
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn btn-info" onclick="saveSecuritySettings()">
+                                                    <i class="fas fa-save"></i> Save Security Settings
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_js %}
+<script>
+$(document).ready(function() {
+    console.log('Features & Settings page loaded');
+    
+    // Handle profile photo upload
+    $('#profilePhotoInput').change(function() {
+        if (this.files && this.files[0]) {
+            // Show preview
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#profileImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+            
+            // Upload the file
+            uploadProfilePhoto(this.files[0]);
+        }
+    });
+});
+
+function uploadProfilePhoto(file) {
+    // Show progress bar
+    $('#uploadProgress').show();
+    
+    var formData = new FormData();
+    formData.append('profile_picture', file);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+    
+    $.ajax({
+        url: '{% url "upload_profile_picture" %}',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        xhr: function() {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener('progress', function(evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = (evt.loaded / evt.total) * 100;
+                    $('.progress-bar').css('width', percentComplete + '%');
+                }
+            }, false);
+            return xhr;
+        },
+        success: function(response) {
+            if (response.success) {
+                showAlert('Profile picture updated successfully!', 'success');
+            } else {
+                showAlert('Error: ' + response.error, 'error');
+            }
+        },
+        error: function(xhr, status, error) {
+            showAlert('Upload failed: ' + error, 'error');
+        },
+        complete: function() {
+            // Hide progress bar after 2 seconds
+            setTimeout(function() {
+                $('#uploadProgress').hide();
+                $('.progress-bar').css('width', '0%');
+            }, 2000);
+        }
+    });
+}
+
+function saveSystemSettings() {
+    var formData = $('#systemSettingsForm').serialize();
+    
+    $.ajax({
+        url: '{% url "save_system_settings" %}',
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+            if (response.success) {
+                showAlert('System settings saved successfully!', 'success');
+            } else {
+                showAlert('Error: ' + response.error, 'error');
+            }
+        },
+        error: function(xhr, status, error) {
+            showAlert('Save failed: ' + error, 'error');
+        }
+    });
+}
+
+function updateFeatures() {
+    var formData = $('#featureSettingsForm').serialize();
+    
+    $.ajax({
+        url: '{% url "update_features" %}',
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+            if (response.success) {
+                showAlert('Feature settings updated successfully!', 'success');
+            } else {
+                showAlert('Error: ' + response.error, 'error');
+            }
+        },
+        error: function(xhr, status, error) {
+            showAlert('Update failed: ' + error, 'error');
+        }
+    });
+}
+
+function updatePassword() {
+    var formData = $('#passwordForm').serialize();
+    
+    // Basic validation
+    var newPassword = $('input[name="new_password"]').val();
+    var confirmPassword = $('input[name="confirm_password"]').val();
+    
+    if (newPassword !== confirmPassword) {
+        showAlert('New password and confirm password do not match!', 'error');
+        return;
+    }
+    
+    if (newPassword.length < 8) {
+        showAlert('Password must be at least 8 characters long!', 'error');
+        return;
+    }
+    
+    $.ajax({
+        url: '{% url "update_password" %}',
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+            if (response.success) {
+                showAlert('Password updated successfully!', 'success');
+                $('#passwordForm')[0].reset();
+            } else {
+                showAlert('Error: ' + response.error, 'error');
+            }
+        },
+        error: function(xhr, status, error) {
+            showAlert('Password update failed: ' + error, 'error');
+        }
+    });
+}
+
+function saveSecuritySettings() {
+    var formData = $('#securitySettingsForm').serialize();
+    
+    $.ajax({
+        url: '{% url "save_security_settings" %}',
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+            if (response.success) {
+                showAlert('Security settings saved successfully!', 'success');
+            } else {
+                showAlert('Error: ' + response.error, 'error');
+            }
+        },
+        error: function(xhr, status, error) {
+            showAlert('Save failed: ' + error, 'error');
+        }
+    });
+}
+
+function showAlert(message, type) {
+    // Remove any existing alerts first
+    $('.alert-dismissible').remove();
+    
+    // Create alert element
+    var alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+    var alertHtml = '<div class="alert ' + alertClass + ' alert-dismissible fade show" role="alert" style="position: fixed; top: 80px; right: 20px; z-index: 9999; min-width: 300px;">' +
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                    '<span aria-hidden="true">&times;</span>' +
+                    '</button>' +
+                    '<strong>' + (type === 'success' ? 'Success!' : 'Error!') + '</strong> ' + message +
+                    '</div>';
+    
+    // Add alert to page
+    $('body').append(alertHtml);
+    
+    // Auto remove after 5 seconds
+    setTimeout(function() {
+        $('.alert-dismissible').alert('close');
+    }, 5000);
+}
+</script>
+{% endblock %}

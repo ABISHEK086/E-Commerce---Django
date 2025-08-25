@@ -1,0 +1,92 @@
+{% load static %}
+<div class="navbar-bg"></div>
+<nav class="navbar navbar-expand-lg main-navbar">
+    <form class="form-inline mr-auto">
+        <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+        </ul>
+        <div class="search-element">
+           
+        </div>
+    </form>
+    <ul class="navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                {% if request.user.profile_picture %}
+                    <img alt="image" src="{{ request.user.profile_picture.url }}" class="rounded-circle mr-1" style="width: 30px; height: 30px; object-fit: cover;">
+                {% else %}
+                    <img alt="image" src="{% static '/img/avatar/avatar-1.png' %}" class="rounded-circle mr-1" style="width: 30px; height: 30px; object-fit: cover;">
+                {% endif %}
+                <div class="d-sm-none d-lg-inline-block">Hi, {{ request.user.username }}</div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <!-- Active status with green dot -->
+                <div class="dropdown-title">
+                    <span class="status-indicator">
+                        <span class="status-dot bg-success"></span>
+                        Active now
+                    </span>
+                </div>
+                
+                {% comment %} 
+                <a href="{% url 'features_profile' %}" class="dropdown-item has-icon">
+                    <i class="far fa-user"></i> Profile
+                </a>
+                <a href="{% url 'features_activities' %}" class="dropdown-item has-icon">
+                    <i class="fas fa-bolt"></i> Activities
+                </a> 
+                {% endcomment %}
+                <a href="{% url 'features_settings' %}" class="dropdown-item has-icon">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <div class="dropdown-divider"></div>
+                <!-- Last login time -->
+                <div class="dropdown-item-text small text-muted px-4">
+                    <i class="fas fa-clock mr-1"></i>
+                    Last login: {{ request.user.last_login|timesince }} ago
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'admin_logout_process' %}" class="dropdown-item has-icon text-danger">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<style>
+.status-indicator {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: pulse 2s infinite;
+}
+
+.bg-success {
+    background-color: #28a745 !important;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(40, 167, 69, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+</style>

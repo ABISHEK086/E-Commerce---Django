@@ -1,0 +1,428 @@
+{% extends 'admin_templates/base_template.html' %}
+{% block title %}
+Sub Category Create
+{% endblock title %}
+
+{% block custom_css %}
+<style>
+    /* Animation for form elements */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animated-form {
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .form-group {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .form-group:nth-child(1) { animation-delay: 0.1s; }
+    .form-group:nth-child(2) { animation-delay: 0.2s; }
+    .form-group:nth-child(3) { animation-delay: 0.3s; }
+    .form-group:nth-child(4) { animation-delay: 0.4s; }
+    .form-group:nth-child(5) { animation-delay: 0.5s; }
+
+    /* Enhanced card styling */
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .card-header {
+        background: linear-gradient(120deg, #4361ee, #3a0ca3);
+        color: white;
+        border-bottom: none;
+        padding: 20px 25px;
+    }
+
+    .card-header h4 {
+        margin: 0;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
+    .card-header h4 i {
+        margin-right: 10px;
+        font-size: 1.3rem;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    /* Form enhancements */
+    .form-group {
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    label {
+        font-weight: 600;
+        color: #343a40;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 12px 15px;
+        transition: all 0.3s;
+        font-size: 15px;
+        box-shadow: none;
+    }
+
+    .form-control:focus {
+        border-color: #4361ee;
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+    }
+
+    /* Button styling */
+    .btn-primary {
+        background: linear-gradient(120deg, #4361ee, #3a0ca3);
+        border: none;
+        border-radius: 8px;
+        padding: 12px 30px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+    }
+
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: 0.5s;
+    }
+
+    .btn-primary:hover::before {
+        left: 100%;
+    }
+
+    /* Alert styling */
+    .alert-danger {
+        border-radius: 8px;
+        border: none;
+        background-color: #ffebee;
+        color: #d32f2f;
+        padding: 12px 15px;
+        margin-top: 8px;
+        animation: shake 0.5s ease-in-out;
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%, 60% { transform: translateX(-5px); }
+        40%, 80% { transform: translateX(5px); }
+    }
+
+    /* Image preview styling */
+    .image-preview-container {
+        display: none;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .image-preview {
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        border: 2px dashed #4361ee;
+        padding: 5px;
+    }
+
+    /* Character counter */
+    .char-counter {
+        font-size: 12px;
+        color: #6c757d;
+        text-align: right;
+        margin-top: 5px;
+    }
+
+    /* Success message */
+    .success-message {
+        display: none;
+        background: #4caf50;
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 20px;
+        animation: fadeIn 0.5s;
+    }
+
+    /* Additional info section */
+    .additional-info {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 30px;
+        border-left: 4px solid #4361ee;
+    }
+
+    .additional-info h5 {
+        color: #4361ee;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .additional-info h5 i {
+        margin-right: 10px;
+    }
+
+    .additional-info ul {
+        padding-left: 20px;
+        margin-bottom: 0;
+    }
+
+    .additional-info li {
+        margin-bottom: 8px;
+        color: #6c757d;
+    }
+    
+    /* Custom file input styling */
+    .custom-file-input {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: calc(1.5em + 0.75rem + 2px);
+        margin: 0;
+        opacity: 0;
+    }
+    
+    .custom-file-label {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1;
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+    }
+    
+    .custom-file-label::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+        display: block;
+        height: calc(1.5em + 0.75rem);
+        padding: 0.375rem 0.75rem;
+        line-height: 1.5;
+        color: #495057;
+        content: "Browse";
+        background-color: #e9ecef;
+        border-left: inherit;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .custom-file {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: calc(1.5em + 0.75rem + 2px);
+        margin-bottom: 0;
+    }
+</style>
+{% endblock custom_css %}
+
+{% block page_title %}
+Sub Category Create
+{% endblock page_title %}
+
+{% block page_content %}
+
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+        <div class="card animated-form">
+            <div class="card-header">
+                <h4><i class="fas fa-layer-group"></i> Create New Sub Category</h4>
+            </div>
+            <div class="card-body">
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i> Sub Category created successfully!
+                </div>
+                
+                <form method="post" enctype="multipart/form-data" id="subCategoryForm">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.name }}">
+                            {{ field.label }}
+                            {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                        </label>
+                        
+                        {% if field.field.widget.input_type == 'file' %}
+                            <div class="custom-file">
+                                <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" 
+                                       id="{{ field.name }}" class="custom-file-input form-control" 
+                                       onchange="previewImage(this)">
+                                <label class="custom-file-label" for="{{ field.name }}">Choose file</label>
+                            </div>
+                            <div class="image-preview-container" id="previewContainer">
+                                <img src="#" alt="Image preview" class="image-preview" id="imagePreview">
+                            </div>
+                        {% elif field.field.widget.input_type == 'select' %}
+                            <select name="{{ field.name }}" id="{{ field.name }}" class="form-control">
+                                {% for id,value in field.field.choices %}
+                                    <option value="{{ id }}" {% if field.value == id %}selected{% endif %}>{{ value }}</option>
+                                {% endfor %}
+                            </select>
+                        {% else %}
+                            <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" 
+                                   id="{{ field.name }}" class="form-control" 
+                                   {% if field.value %}value="{{ field.value }}"{% endif %}
+                                   {% if field.field.widget.attrs.placeholder %}placeholder="{{ field.field.widget.attrs.placeholder }}"{% endif %}>
+                        {% endif %}
+                        
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                        
+                        {% if field.errors %}
+                            <div class="alert alert-danger" style="margin:10px">
+                                <i class="fas fa-exclamation-circle"></i> {{ field.errors }}
+                            </div>
+                        {% endif %}
+                        
+                        {% if field.name == 'description' %}
+                            <div class="char-counter"><span id="charCount">0</span>/500 characters</div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-save"></i> Save Sub Category
+                    </button>
+                </form>
+                
+                <div class="additional-info">
+                    <h5><i class="fas fa-lightbulb"></i> Sub Category Tips</h5>
+                    <ul>
+                        <li>Choose a parent category that best fits your sub category</li>
+                        <li>Use clear and descriptive sub category names</li>
+                        <li>Add a relevant image to make the sub category recognizable</li>
+                        <li>Keep descriptions concise but informative</li>
+                        <li>Consider how sub categories will be organized under parent categories</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
+
+{% block custom_js %}
+<script>
+    // Image preview functionality
+    function previewImage(input) {
+        const previewContainer = document.getElementById('previewContainer');
+        const preview = document.getElementById('imagePreview');
+        const fileLabel = input.nextElementSibling;
+        
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                previewContainer.style.display = 'block';
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+            fileLabel.textContent = input.files[0].name;
+        }
+    }
+    
+    // Character counter for description
+    const descriptionField = document.getElementById('description');
+    const charCount = document.getElementById('charCount');
+    
+    if (descriptionField && charCount) {
+        descriptionField.addEventListener('input', function() {
+            charCount.textContent = this.value.length;
+            
+            if (this.value.length > 450) {
+                charCount.classList.add('text-danger');
+            } else {
+                charCount.classList.remove('text-danger');
+            }
+        });
+        
+        // Initialize character count
+        charCount.textContent = descriptionField.value.length;
+        if (descriptionField.value.length > 450) {
+            charCount.classList.add('text-danger');
+        }
+    }
+    
+    // Form submission handling
+    document.getElementById('subCategoryForm').addEventListener('submit', function(e) {
+        
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'block';
+        
+       
+        successMessage.scrollIntoView({ behavior: 'smooth' });
+        
+       
+    });
+    
+    // Animate form elements on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const formGroups = document.querySelectorAll('.form-group');
+        
+        formGroups.forEach((group, index) => {
+            group.style.animationDelay = `${0.1 + (index * 0.1)}s`;
+        });
+        
+        // Initialize custom file inputs
+        const customFileInputs = document.querySelectorAll('.custom-file-input');
+        customFileInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                let fileName = this.files[0] ? this.files[0].name : 'Choose file';
+                this.nextElementSibling.textContent = fileName;
+            });
+        });
+    });
+</script>
+{% endblock custom_js %}
