@@ -1,13 +1,13 @@
 "use strict";
 
-// initialize map
+
 var map = new GMaps({
   div: '#map',
   lat: -6.8665409,
   lng: 106.4836553,
   zoom: 8
 });
-// Added markers to the map
+
 map.addMarker({
   lat: -6.5637928,
   lng: 106.7535061,

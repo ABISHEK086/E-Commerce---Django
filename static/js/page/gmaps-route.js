@@ -1,6 +1,6 @@
 "use strict";
 
-// initialize map
+
 var map = new GMaps({
   div: '#map',
   lat: -6.5637928,
@@ -8,7 +8,7 @@ var map = new GMaps({
   zoom: 13
 });
 
-// draw route between 'origin' to 'destination'
+
 map.drawRoute({
   origin: [-6.5637928, 106.7535061],
   destination: [-6.5956157, 106.788236],

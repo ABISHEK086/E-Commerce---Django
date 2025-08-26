@@ -11,8 +11,7 @@ $("#setting-form").submit(function() {
   save_button.addClass('btn-progress');
   output_status.html('');
   
-  // Do AJAX here
-  // Here's fake AJAX
+  
   setTimeout(function() {
     card_progress.dismiss(function() {
       $('html, body').animate({

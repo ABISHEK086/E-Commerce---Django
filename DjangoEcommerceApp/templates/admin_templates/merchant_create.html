@@ -5,7 +5,7 @@ Merchant Create
 
 {% block custom_css %}
 <style>
-    /* Animation for form elements */
+    
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -30,7 +30,7 @@ Merchant Create
     .form-group:nth-child(7) { animation-delay: 0.7s; }
     .form-group:nth-child(8) { animation-delay: 0.8s; }
 
-    /* Enhanced card styling */
+    
     .card {
         border: none;
         border-radius: 12px;
@@ -67,7 +67,7 @@ Merchant Create
         padding: 30px;
     }
 
-    /* Form enhancements */
+    
     .form-group {
         margin-bottom: 25px;
         position: relative;
@@ -94,7 +94,7 @@ Merchant Create
         box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
 
-    /* Button styling */
+    
     .btn-primary {
         background: linear-gradient(120deg, #4361ee, #3a0ca3);
         border: none;
@@ -132,7 +132,7 @@ Merchant Create
         left: 100%;
     }
 
-    /* Alert styling */
+    
     .alert-danger {
         border-radius: 8px;
         border: none;
@@ -149,7 +149,7 @@ Merchant Create
         40%, 80% { transform: translateX(5px); }
     }
 
-    /* Image preview styling */
+    
     .image-preview-container {
         display: none;
         margin-top: 15px;
@@ -165,7 +165,7 @@ Merchant Create
         padding: 5px;
     }
 
-    /* Success message */
+    
     .success-message {
         display: none;
         background: #4caf50;
@@ -177,7 +177,7 @@ Merchant Create
         animation: fadeIn 0.5s;
     }
 
-    /* Additional info section */
+    
     .additional-info {
         background-color: #f8f9fa;
         border-radius: 8px;
@@ -253,7 +253,7 @@ Merchant Create
                     </div>
                     {% endfor %}
                     
-                    <!-- Additional merchant fields -->
+                    
                     <div class="form-group">
                         <label for="profile_pic">Profile Image</label>
                         <div class="custom-file">
@@ -302,7 +302,7 @@ Merchant Create
 
 {% block custom_js %}
 <script>
-    // Image preview functionality
+    
     function previewImage(input) {
         const previewContainer = document.getElementById('previewContainer');
         const preview = document.getElementById('imagePreview');
@@ -321,29 +321,25 @@ Merchant Create
         }
     }
     
-    // Form submission handling
+    
     document.getElementById('merchantForm').addEventListener('submit', function(e) {
-        // You could add additional validation here
         
-        // For demo purposes, let's show success message
-        // In a real application, this would be handled by the backend
         e.preventDefault();
         
-        // Simulate successful submission
+        
         const successMessage = document.getElementById('successMessage');
         successMessage.style.display = 'block';
         
-        // Scroll to success message
+        
         successMessage.scrollIntoView({ behavior: 'smooth' });
         
-        // In a real application, you would submit the form to the server
-        // For now, we'll just simulate a delay and then submit
+        
         setTimeout(() => {
             this.submit();
         }, 1500);
     });
     
-    // Animate form elements on page load
+    
     document.addEventListener('DOMContentLoaded', function() {
         const formGroups = document.querySelectorAll('.form-group');
         

@@ -5,7 +5,7 @@ Sub Category List
 
 {% block custom_css %}
 <style>
-    /* Animation styles */
+   
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -28,7 +28,7 @@ Sub Category List
         100% { box-shadow: 0 0 0 0 rgba(79, 195, 247, 0); }
     }
     
-    /* Card animations */
+    
     .card {
         border: none;
         border-radius: 12px;
@@ -47,7 +47,7 @@ Sub Category List
         animation: slideInRight 0.5s ease-out;
     }
     
-    /* Article/item animations - FIXED CARD SIZE */
+    
     .article {
         border-radius: 12px;
         overflow: hidden;
@@ -55,7 +55,7 @@ Sub Category List
         transition: all 0.3s ease;
         opacity: 0;
         animation: fadeIn 0.6s ease-out forwards;
-        height: 100%; /* Ensure consistent height */
+        height: 100%; 
         display: flex;
         flex-direction: column;
     }
@@ -72,12 +72,12 @@ Sub Category List
     .col-lg-3:nth-child(5) .article { animation-delay: 0.5s; }
     .col-lg-3:nth-child(6) .article { animation-delay: 0.6s; }
     
-    /* Article header enhancements - FIXED IMAGE DISPLAY */
+    
     .article-header {
         position: relative;
         height: 180px;
         overflow: hidden;
-        flex-shrink: 0; /* Prevent header from shrinking */
+        flex-shrink: 0; 
     }
     
     .article-image {
@@ -92,7 +92,7 @@ Sub Category List
         transform: scale(1.1);
     }
     
-    /* Sub Category name/badge positioning and hover effect */
+    
     .article-badge {
         position: absolute;
         top: 15px;
@@ -119,11 +119,11 @@ Sub Category List
         max-width: 120px;
     }
     
-    /* Article details enhancements - FIXED CARD CONTENT SIZE */
+    
     .article-details {
         padding: 20px;
         background: white;
-        flex-grow: 1; /* Allow details to grow and fill space */
+        flex-grow: 1; 
         display: flex;
         flex-direction: column;
     }
@@ -134,7 +134,7 @@ Sub Category List
         line-height: 1.5;
     }
     
-    /* Badge styling */
+    
     .badge {
         padding: 8px 12px;
         border-radius: 20px;
@@ -159,7 +159,7 @@ Sub Category List
         color: white;
     }
     
-    /* Button enhancements */
+    
     .btn {
         border-radius: 8px;
         font-weight: 600;
@@ -182,7 +182,7 @@ Sub Category List
         box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
     }
     
-    /* Edit button - sky blue with animation */
+    
     .btn-edit {
         background: linear-gradient(45deg, #4fc3f7, #29b6f6);
         border: none;
@@ -200,7 +200,7 @@ Sub Category List
         box-shadow: 0 4px 12px rgba(79, 195, 247, 0.4);
         color: white;
         background: linear-gradient(45deg, #29b6f6, #039be5);
-        animation: none; /* Stop pulse animation on hover */
+        animation: none; 
     }
     
     .btn-success {
@@ -216,7 +216,7 @@ Sub Category List
         color: white;
     }
     
-    /* Search form enhancements */
+    
     .search-element {
         margin-bottom: 20px;
     }
@@ -234,16 +234,16 @@ Sub Category List
         box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
     
-    /* Button container alignment */
+    
     .article-cta {
         display: flex;
-        justify-content: flex-end; /* Align button to the right */
+        justify-content: flex-end; 
         align-items: center;
         width: 100%;
         margin-top: 15px;
     }
     
-    /* Pagination enhancements */
+    
     .pagination {
         justify-content: center;
     }
@@ -277,7 +277,7 @@ Sub Category List
         opacity: 0.6;
     }
     
-    /* Sort by links */
+    
     .card-body a {
         color: #4361ee;
         font-weight: 600;
@@ -293,7 +293,7 @@ Sub Category List
         transform: translateY(-2px);
     }
     
-    /* Empty state */
+    
     .empty-state {
         text-align: center;
         padding: 40px;
@@ -312,7 +312,7 @@ Sub Category List
         margin-bottom: 15px;
     }
     
-    /* Search form layout */
+    
     .d-flex {
         display: flex;
         align-items: center;
@@ -326,7 +326,7 @@ Sub Category List
         margin-left: 0.5rem !important;
     }
     
-    /* Ensure consistent card heights in row */
+    
     .row {
         display: flex;
         flex-wrap: wrap;
@@ -475,15 +475,15 @@ Sub Category List
 
 {% block custom_js %}
 <script>
-    // Add animation to page elements on load
+    
     document.addEventListener('DOMContentLoaded', function() {
-        // Animate search card
+       
         const searchCard = document.querySelector('.search-element .card');
         if (searchCard) {
             searchCard.style.animation = 'slideInRight 0.5s ease-out';
         }
         
-        // Add hover effect to cards
+        
         const articles = document.querySelectorAll('.article');
         articles.forEach(article => {
             article.addEventListener('mouseenter', function() {

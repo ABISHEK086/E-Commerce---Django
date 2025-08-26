@@ -5,7 +5,7 @@ Merchant Update
 
 {% block custom_css %}
 <style>
-    /* Animation for form elements */
+    
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -29,7 +29,7 @@ Merchant Update
     .form-group:nth-child(6) { animation-delay: 0.6s; }
     .form-group:nth-child(7) { animation-delay: 0.7s; }
 
-    /* Enhanced card styling */
+    
     .card {
         border: none;
         border-radius: 12px;
@@ -67,7 +67,7 @@ Merchant Update
         padding: 30px;
     }
 
-    /* Form enhancements */
+    
     .form-group {
         margin-bottom: 25px;
         position: relative;
@@ -94,7 +94,7 @@ Merchant Update
         box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
 
-    /* Button styling */
+
     .btn-primary {
         background: linear-gradient(120deg, #4361ee, #3a0ca3);
         border: none;
@@ -133,7 +133,7 @@ Merchant Update
         left: 100%;
     }
 
-    /* Alert styling */
+    
     .alert-danger {
         border-radius: 8px;
         border: none;
@@ -150,7 +150,7 @@ Merchant Update
         40%, 80% { transform: translateX(5px); }
     }
 
-    /* Image preview styling */
+    
     .image-preview-container {
         margin-top: 15px;
         text-align: center;
@@ -174,7 +174,7 @@ Merchant Update
     .image-card {
         border: none;
         border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,极速0.08);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         margin-bottom: 20px;
         overflow: hidden;
     }
@@ -184,7 +184,7 @@ Merchant Update
         text-align: center;
     }
 
-    /* Success message */
+    
     .success-message {
         display: none;
         background: #4caf50;
@@ -196,7 +196,7 @@ Merchant Update
         animation: fadeIn 0.5s;
     }
 
-    /* Additional info section */
+    
     .additional-info {
         background-color: #f8f9fa;
         border-radius: 8px;
@@ -226,7 +226,7 @@ Merchant Update
         color: #6c757d;
     }
 
-    /* File input styling */
+    
     .custom-file {
         position: relative;
         display: inline-block;
@@ -274,7 +274,7 @@ Merchant Update
         display: block;
         height: calc(calc(2.25rem + 2px) - 2px);
         padding: 0.375rem 0.75rem;
-        line-height: 极速1.5;
+        line-height: 1.5;
         color: #495057;
         content: "Browse";
         background-color: #e9ecef;
@@ -282,7 +282,7 @@ Merchant Update
         border-radius: 0 8px 8px 0;
     }
 
-    /* Toggle switch styling */
+    
     .custom-switch {
         padding-left: 3rem;
         margin-top: 15px;
@@ -343,7 +343,7 @@ Merchant Update
                     </div>
                     {% endfor %}
                     
-                    <!-- Profile Image Upload -->
+                    
                     <div class="form-group">
                         <label for="profile_pic">Profile Image</label>
                         
@@ -366,25 +366,25 @@ Merchant Update
                         {% endif %}
                     </div>
                     
-                    <!-- Company Field -->
+                    
                     <div class="form-group">
                         <label for="company_name">Company</label>
                         <input type="text" name="company_name" id="company_name" class="form-control" value="{{ merchantuser.company_name }}">
                     </div>
                     
-                    <!-- GST Field -->
+                    
                     <div class="form-group">
                         <label for="gst_details">GST</label>
                         <input type="text" name="gst_details" id="gst_details" class="form-control" value="{{ merchantuser.gst_details }}">
                     </div>
                     
-                    <!-- Address Field -->
+                    
                     <div class="form-group">
                         <label for="address">Address</label>
                         <input type="text" name="address" id="address" class="form-control" value="{{ merchantuser.address }}">
                     </div>
                     
-                    <!-- Admin Added Toggle -->
+                    
                     <div class="form-group">
                         <label class="custom-switch mt-2">
                             <input type="checkbox" name="is_added_by_admin" class="custom-switch-input" 
@@ -417,17 +417,17 @@ Merchant Update
 
 {% block custom_js %}
 <script>
-    // Image preview functionality for new file selection
+    
     function previewImage(input) {
         const fileLabel = input.nextElementSibling;
         
         if (input.files && input.files[0]) {
             fileLabel.textContent = input.files[0].name;
             
-            // Show preview of new image
+            
             const reader = new FileReader();
             reader.onload = function(e) {
-                // Create or update preview image
+                
                 let previewContainer = document.querySelector('.image-preview-container');
                 if (!previewContainer) {
                     previewContainer = document.createElement('div');
@@ -453,29 +453,25 @@ Merchant Update
         }
     }
     
-    // Form submission handling
+    
     document.getElementById('merchantForm').addEventListener('submit', function(e) {
-        // You could add additional validation here
         
-        // For demo purposes, let's show success message
-        // In a real application, this would be handled by the backend
         e.preventDefault();
         
-        // Simulate successful submission
+        
         const successMessage = document.getElementById('successMessage');
         successMessage.style.display = 'block';
         
-        // Scroll to success message
+        
         successMessage.scrollIntoView({ behavior: 'smooth' });
         
-        // In a real application, you would submit the form to the server
-        // For now, we'll just simulate a delay and then submit
+        
         setTimeout(() => {
             this.submit();
         }, 1500);
     });
     
-    // Animate form elements on page load
+    
     document.addEventListener('DOMContentLoaded', function() {
         const formGroups = document.querySelectorAll('.form-group');
         
@@ -483,7 +479,7 @@ Merchant Update
             group.style.animationDelay = `${0.1 + (index * 0.1)}s`;
         });
         
-        // Update custom file input labels to show selected file name
+        
         const fileInputs = document.querySelectorAll('.custom-file-input');
         fileInputs.forEach(input => {
             input.addEventListener('change', function() {

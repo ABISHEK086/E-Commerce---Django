@@ -5,7 +5,7 @@ Category Create
 
 {% block custom_css %}
 <style>
-    /* Animation for form elements */
+    
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -27,7 +27,7 @@ Category Create
     .form-group:nth-child(4) { animation-delay: 0.4s; }
     .form-group:nth-child(5) { animation-delay: 0.5s; }
 
-    /* Enhanced card styling */
+    
     .card {
         border: none;
         border-radius: 12px;
@@ -64,7 +64,7 @@ Category Create
         padding: 30px;
     }
 
-    /* Form enhancements */
+   
     .form-group {
         margin-bottom: 25px;
         position: relative;
@@ -91,7 +91,7 @@ Category Create
         box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
 
-    /* Button styling */
+    
     .btn-primary {
         background: linear-gradient(120deg, #4361ee, #3a0ca3);
         border: none;
@@ -129,7 +129,7 @@ Category Create
         left: 100%;
     }
 
-    /* Alert styling */
+    
     .alert-danger {
         border-radius: 8px;
         border: none;
@@ -146,7 +146,7 @@ Category Create
         40%, 80% { transform: translateX(5px); }
     }
 
-    /* Image preview styling */
+    
     .image-preview-container {
         display: none;
         margin-top: 15px;
@@ -162,7 +162,7 @@ Category Create
         padding: 5px;
     }
 
-    /* Character counter */
+    
     .char-counter {
         font-size: 12px;
         color: #6c757d;
@@ -170,7 +170,7 @@ Category Create
         margin-top: 5px;
     }
 
-    /* Success message */
+    
     .success-message {
         display: none;
         background: #4caf50;
@@ -182,7 +182,7 @@ Category Create
         animation: fadeIn 0.5s;
     }
 
-    /* Additional info section */
+    
     .additional-info {
         background-color: #f8f9fa;
         border-radius: 8px;
@@ -296,7 +296,7 @@ Category Create
 
 {% block custom_js %}
 <script>
-    // Image preview functionality
+    
     function previewImage(input) {
         const previewContainer = document.getElementById('previewContainer');
         const preview = document.getElementById('imagePreview');
@@ -315,7 +315,7 @@ Category Create
         }
     }
     
-    // Character counter for description
+    
     const descriptionField = document.getElementById('description');
     const charCount = document.getElementById('charCount');
     
@@ -331,29 +331,24 @@ Category Create
         });
     }
     
-    // Form submission handling
+    
     document.getElementById('categoryForm').addEventListener('submit', function(e) {
-        // You could add additional validation here
         
-        // For demo purposes, let's show success message
-        // In a real application, this would be handled by the backend
         e.preventDefault();
         
-        // Simulate successful submission
+        
         const successMessage = document.getElementById('successMessage');
         successMessage.style.display = 'block';
         
-        // Scroll to success message
         successMessage.scrollIntoView({ behavior: 'smooth' });
         
-        // In a real application, you would submit the form to the server
-        // For now, we'll just simulate a delay and then submit
+        
         setTimeout(() => {
             this.submit();
         }, 1500);
     });
     
-    // Animate form elements on page load
+    
     document.addEventListener('DOMContentLoaded', function() {
         const formGroups = document.querySelectorAll('.form-group');
         

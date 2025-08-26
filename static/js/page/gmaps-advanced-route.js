@@ -1,13 +1,13 @@
 "use strict";
 
-// initialize map
+
 var map = new GMaps({
   div: '#map',
   lat: -6.5637928,
   lng: 106.7535061
 });
 
-// when the 'start travel' button is clicked
+
 $("#start-travel").click(function() {
   $(this).fadeOut();
   $("#instructions").before("<div class='section-title'>Instructions</div>");

@@ -6,7 +6,7 @@ Product Create
 {% block custom_css %}
 <link rel="stylesheet" href="//bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css"/>
 <style>
-    /* Animation styles */
+    
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -29,7 +29,7 @@ Product Create
         100% { box-shadow: 0 0 5px rgba(255, 193极速, 7, 0.5); }
     }
     
-    /* Card animations */
+    
     .card {
         border: none;
         border-radius: 12px;
@@ -69,7 +69,7 @@ Product Create
         padding: 30px;
     }
     
-    /* Form enhancements */
+    
     .form-group {
         margin-bottom: 25px;
         position: relative;
@@ -104,7 +104,7 @@ Product Create
         box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
     
-    /* Button styling */
+    
     .btn {
         border-radius: 8px;
         font-weight: 600;
@@ -156,7 +156,7 @@ Product Create
         color: white;
     }
     
-    /* Section headers */
+    
     h5 {
         font-size: 1.5rem;
         font-weight: 600;
@@ -182,7 +182,7 @@ Product Create
         background: linear-gradient(90deg, transparent, #4361ee, transparent);
     }
     
-    /* Media preview styling */
+    
     .img_preview, .video_preview {
         transition: all 0.3s ease;
         border-radius: 8px;
@@ -200,7 +200,7 @@ Product Create
         object-fit: contain;
     }
     
-    /* Progress bar styling */
+    
     .progress {
         height: 30px;
         border-radius: 10px;
@@ -220,7 +220,7 @@ Product Create
         animation: progressGlow 2s infinite;
     }
     
-    /* Row styling */
+    
     .media_div_row, .details_div_row, .about_div_row {
         padding: 20px;
         margin-bottom: 20px;
@@ -242,7 +242,7 @@ Product Create
     .media_div_row:nth-child(3) { animation-delay: 0.3s; }
     .media_div_row:nth-child(4) { animation-delay: 0.4s; }
     
-    /* Bootstrap tags input */
+    
     .bootstrap-tagsinput {
         width: 100%;
         border: 2px solid #e9ecef;
@@ -255,10 +255,10 @@ Product Create
     
     .bootstrap-tagsinput:focus {
         border-color: #4361ee;
-        box-shadow: 0 0 极速0 3px rgba(67, 97, 238, 0.15);
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
     
-    /* Success message */
+    
     .success-message {
         display: none;
         background: #4caf50;
@@ -270,7 +270,7 @@ Product Create
         animation: fadeIn 0.5s;
     }
     
-    /* Textarea styling */
+    
     textarea.form-control {
         min-height: 120px;
         resize: vertical;
@@ -425,12 +425,12 @@ Product Create
                     <div class="row">
                         <div class="col-lg-6">
                             <button class="btn btn-success add_media" type="button">
-                                <i class="fas fa-plus"></i> ADD MEDIA CONTENT
+                                <i class="fas fa-plus"></i> Add
                             </button>
                         </div>
                         <div class="col-lg-6">
                             <button class="btn btn-danger remove_media" type="button">
-                                <i class="fas fa-minus"></i> REMOVE MEDIA CONTENT
+                                <i class="fas fa-minus"></i> Remove
                             </button>
                         </div>
                     </div>
@@ -458,12 +458,12 @@ Product Create
                     <div class="row">
                         <div class="col-lg-6">
                             <button class="btn btn-success add_details" type="button">
-                                <i class="fas fa-plus"></i> ADD DETAILS
+                                <i class="fas fa-plus"></i> Add
                             </button>
                         </div>
                         <div class="col-lg-6">
                             <button class="btn btn-danger remove_details" type="button">
-                                <i class="fas fa-minus"></i> REMOVE DETAILS
+                                <i class="fas fa-minus"></i> Remove
                             </button>
                         </div>
                     </div>
@@ -485,12 +485,12 @@ Product Create
                     <div class="row">
                         <div class="col-lg-6">
                             <button class="btn btn-success add_about" type="button">
-                                <i class="fas fa-plus"></i> ADD ABOUT DETAILS
+                                <i class="fas fa-plus"></i> Add
                             </button>
                         </div>
                         <div class="col-lg-6">
                             <button class="btn btn-danger remove_about" type="button">
-                                <i class="fas fa-minus"></i> REMOVE ABOUT DETAILS
+                                <i class="fas fa-minus"></i> Remove
                             </button>
                         </div>
                     </div>
@@ -516,7 +516,7 @@ Product Create
                     
                     <div class="row">
                         <button type="button" class="btn btn-primary btn-block submit_btn">
-                            <i class="fas fa-save"></i> ADD PRODUCT
+                            <i class="fas fa-save"></i> Add Product
                         </button>
                     </div>
                 </form>
@@ -529,7 +529,7 @@ Product Create
 {% block custom_js %}
 <script src="//cdn.tiny.cloud/1/u6oa5pnpaa1vxho1md7uk4zmq2ai7xuf5o5wfgyrc131vpj6/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-    // Animate elements on page load
+    
     document.addEventListener('DOMContentLoaded', function() {
         const formGroups = document.querySelectorAll('.form-group');
         const sectionHeaders = document.querySelectorAll('h5');
@@ -548,7 +548,7 @@ Product Create
         });
     });
     
-    // TinyMCE initialization
+    
     tinymce.init({
         selector: "textarea#long_desc",
         height: 300,
@@ -592,7 +592,7 @@ Product Create
         },
     });
     
-    // Media management
+   
     $(".add_media").click(function(){
         var media_row=$(".first_media").clone();
         media_row.removeClass("first_media");
@@ -601,11 +601,11 @@ Product Create
         media_row.find(".img_preview").attr("src","").css({"border":"none"}).css({"border-radius":"0px"}).hide();
         media_row.find(".video_preview").attr("src","").css({"border":"none"}).css({"border-radius":"0px"}).hide();
         
-        // Add animation to new row
+        
         media_row.css({opacity: 0, transform: "translateY(20px)"});
         $(".media_div").append(media_row);
         
-        // Animate the new row
+        
         setTimeout(function() {
             media_row.css({
                 opacity: 1,
@@ -619,7 +619,7 @@ Product Create
         if($(".media_div").find(".media_div_row").length>1){
             var lastRow = $(".media_div").children().last();
             
-            // Animate removal
+            
             lastRow.css({
                 opacity: 0,
                 transform: "translateY(20px)",
@@ -632,18 +632,18 @@ Product Create
         }
     });
     
-    // Details management
+    
     $(".add_details").click(function(){
         var details_row=$(".first_details").clone();
         details_row.removeClass("first_details");
         details_row.find(".title_title").val("");
         details_row.find(".title_details").val("");
         
-        // Add animation to new row
+        
         details_row.css({opacity: 0, transform: "translateY(20px)"});
         $(".details_div").append(details_row);
         
-        // Animate the new row
+        
         setTimeout(function() {
             details_row.css({
                 opacity: 1,
@@ -657,7 +657,7 @@ Product Create
         if($(".details_div").find(".details_div_row").length>1){
             var lastRow = $(".details_div").children().last();
             
-            // Animate removal
+            
             lastRow.css({
                 opacity: 0,
                 transform: "translateY(20px)",
@@ -670,17 +670,17 @@ Product Create
         }
     });
     
-    // About management
+    
     $(".add_about").click(function(){
         var about_row=$(".first_about").clone();
         about_row.removeClass("first_about");
         about_row.find(".about_title").val("");
         
-        // Add animation to new row
+        
         about_row.css({opacity: 0, transform: "translateY(20px)"});
         $(".about_div").append(about_row);
         
-        // Animate the new row
+        
         setTimeout(function() {
             about_row.css({
                 opacity: 1,
@@ -694,7 +694,7 @@ Product Create
         if($(".about_div").find(".about_div_row").length>1){
             var lastRow = $(".about_div").children().last();
             
-            // Animate removal
+            
             lastRow.css({
                 opacity: 0,
                 transform: "translateY(20px)",
@@ -707,7 +707,7 @@ Product Create
         }
     });
     
-    // Media preview functionality
+    
     $(document).on("change",".select_media",function(){
         var media_type=$(this).parents(".media_div_row").find(".media_type").val();
         var img_preview=$(this).parents(".media_div_row").find(".img_preview");
@@ -738,17 +738,17 @@ Product Create
         }
     }
     
-    // Form submission
+   
     $(".submit_btn").click(function(){
         var form=new FormData($("#myform")[0]);
         form.append("long_desc",tinyMCE.activeEditor.getContent());
         
-        //AJAX CODE
+        
         var xhr=new XMLHttpRequest();
         xhr.onreadystatechange=function(){
             if(xhr.readyState === 4 && xhr.status === 200){
                 console.log(xhr.responseText);
-                // Show success message
+                
                 $("#successMessage").fadeIn();
                 setTimeout(function() {
                     $("#successMessage").fadeOut();
@@ -758,14 +758,14 @@ Product Create
         xhr.open("POST","{% url 'product_view' %}",true);
         $("#progressbar").show();
         
-        //UPDATING PROGRESS BAR
+        
         xhr.upload.addEventListener("progress",function(ev){
             if(ev.lengthComputable){
                 var percentage=(ev.loaded/ev.total*100|0);
                 $("#progressbar").css({"width":""+percentage+"%"}).text("Uploading: "+percentage+"%");
                 console.log(percentage);
                 
-                // Complete animation when done
+                
                 if (percentage === 100) {
                     setTimeout(function() {
                         $("#progressbar").css({"width": "100%"}).text("Upload Complete!");

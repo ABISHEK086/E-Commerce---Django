@@ -5,7 +5,7 @@ Sub Category Update
 
 {% block custom_css %}
 <style>
-    /* Animation for form elements */
+    
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -23,11 +23,11 @@ Sub Category Update
 
     .form-group:nth-child(1) { animation-delay: 0.1s; }
     .form-group:nth-child(2) { animation-delay: 0.2s; }
-    .form-group:nth-child(3极速) { animation-delay: 0.3s; }
+    .form-group:nth-child(3) { animation-delay: 0.3s; }
     .form-group:nth-child(4) { animation-delay: 0.4s; }
     .form-group:nth-child(5) { animation-delay: 0.5s; }
 
-    /* Enhanced card styling */
+    
     .card {
         border: none;
         border-radius: 12px;
@@ -65,7 +65,7 @@ Sub Category Update
         padding: 30px;
     }
 
-    /* Form enhancements */
+    
     .form-group {
         margin-bottom: 25px;
         position: relative;
@@ -92,7 +92,7 @@ Sub Category Update
         box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
 
-    /* Button styling */
+    
     .btn-primary {
         background: linear-gradient(120deg, #4361ee, #3a0ca3);
         border: none;
@@ -109,7 +109,7 @@ Sub Category Update
 
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 7极速px 20px rgba(67, 97, 238, 0.4);
+        box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
     }
 
     .btn-primary:active {
@@ -127,11 +127,11 @@ Sub Category Update
         transition: 0.5s;
     }
 
-    .btn-primary:hover极速::before {
+    .btn-primary:hover::before {
         left: 100%;
     }
 
-    /* Alert styling */
+    
     .alert-danger {
         border-radius: 8px;
         border: none;
@@ -148,7 +148,7 @@ Sub Category Update
         40%, 80% { transform: translateX(5px); }
     }
 
-    /* Image preview styling */
+  
     .image-preview-container {
         margin-top: 15px;
         text-align: center;
@@ -182,7 +182,7 @@ Sub Category Update
         text-align: center;
     }
 
-    /* Character counter */
+   
     .char-counter {
         font-size: 12px;
         color: #6c757d;
@@ -190,7 +190,7 @@ Sub Category Update
         margin-top: 5px;
     }
 
-    /* Success message */
+    
     .success-message {
         display: none;
         background: #4caf50;
@@ -199,10 +199,10 @@ Sub Category Update
         border-radius: 8px;
         text-align: center;
         margin-bottom: 20px;
-        animation: fadeIn极速 0.5s;
+        animation: fadeIn 0.5s;
     }
 
-    /* Additional info section */
+    
     .additional-info {
         background-color: #f8f9fa;
         border-radius: 8px;
@@ -232,7 +232,7 @@ Sub Category Update
         color: #6c757d;
     }
 
-    /* File input styling */
+    
     .custom-file {
         position: relative;
         display: inline-block;
@@ -388,23 +388,23 @@ Sub Category Update
 
 {% block custom_js %}
 <script>
-    // Image preview functionality for new file selection
+    
     function previewImage(input) {
         const fileLabel = input.nextElementSibling;
         
         if (input.files && input.files[0]) {
             fileLabel.textContent = input.files[0].name;
             
-            // Show preview of new image
+            
             const reader = new FileReader();
             reader.onload = function(e) {
-                // You could add a preview of the new image here
+                
             }
             reader.readAsDataURL(input.files[0]);
         }
     }
     
-    // Character counter for description
+    
     const descriptionField = document.getElementById('description');
     const charCount = document.getElementById('charCount');
     
@@ -419,36 +419,30 @@ Sub Category Update
             }
         });
         
-        // Initialize character count
+        
         charCount.textContent = descriptionField.value.length;
         if (descriptionField.value.length > 450) {
             charCount.classList.add('text-danger');
         }
     }
     
-    // Form submission handling
+    
     document.getElementById('subCategoryForm').addEventListener('submit', function(e) {
-        // You could add additional validation here
         
-        // For demo purposes, let's show success message
-        // In a real application, this would be handled by the backend
         // e.preventDefault();
         
-        // Simulate successful submission
         const successMessage = document.getElementById('successMessage');
         successMessage.style.display = 'block';
         
-        // Scroll to success message
         successMessage.scrollIntoView({ behavior: 'smooth' });
         
-        // In a real application, you would submit the form to the server
-        // For now, we'll just simulate a delay and then submit
+    
         // setTimeout(() => {
         //     this.submit();
         // }, 1500);
     });
     
-    // Animate form elements on page load
+    
     document.addEventListener('DOMContentLoaded', function() {
         const formGroups = document.querySelectorAll('.form-group');
         
@@ -456,7 +450,7 @@ Sub Category Update
             group.style.animationDelay = `${0.1 + (index * 0.1)}s`;
         });
         
-        // Initialize custom file inputs
+       
         const customFileInputs = document.querySelectorAll('.custom-file-input');
         customFileInputs.forEach(input => {
             input.addEventListener('change', function() {

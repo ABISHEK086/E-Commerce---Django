@@ -52,7 +52,6 @@ def upload_profile_picture(request):
 def save_system_settings(request):
     if request.method == 'POST':
         try:
-            # Process system settings here
             # store_name = request.POST.get('store_name')
             # timezone = request.POST.get('timezone')
             return JsonResponse({'success': True, 'message': 'System settings saved successfully!'})
@@ -63,7 +62,6 @@ def save_system_settings(request):
 def update_features(request):
     if request.method == 'POST':
         try:
-            # Process feature settings here
             # email_notifications = request.POST.get('email_notifications')
             # sms_notifications = request.POST.get('sms_notifications')
             return JsonResponse({'success': True, 'message': 'Feature settings updated successfully!'})

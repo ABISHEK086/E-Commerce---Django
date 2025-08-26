@@ -5,7 +5,7 @@ Customer List
 
 {% block custom_css %}
 <style>
-    /* Animation styles */
+    
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -28,7 +28,7 @@ Customer List
         100% { box-shadow: 0 0 0 0 rgba(79, 195, 247, 0); }
     }
     
-    /* Card animations */
+    
     .card {
         border: none;
         border-radius: 12px;
@@ -47,7 +47,7 @@ Customer List
         animation: slideInRight 0.5s ease-out;
     }
     
-    /* Article/item animations - FIXED CARD SIZE */
+    
     .article {
         border-radius: 12px;
         overflow: hidden;
@@ -72,12 +72,12 @@ Customer List
     .col-lg-3:nth-child(5) .article { animation-delay: 0.5s; }
     .col-lg-3:nth-child(6) .article { animation-delay: 0.6s; }
     
-    /* Article header enhancements - FIXED IMAGE DISPLAY */
+    
     .article-header {
         position: relative;
         height: 180px;
         overflow: hidden;
-        flex-shrink: 0; /* Prevent header from shrinking */
+        flex-shrink: 0; 
     }
     
     .article-image {
@@ -92,7 +92,7 @@ Customer List
         transform: scale(1.1);
     }
     
-    /* FIXED: Customer name/badge positioning and hover effect */
+    
     .article-badge {
         position: absolute;
         top: 15px;
@@ -119,11 +119,11 @@ Customer List
         max-width: 120px;
     }
     
-    /* Article details enhancements - FIXED CARD CONTENT SIZE */
+    
     .article-details {
         padding: 20px;
         background: white;
-        flex-grow: 1; /* Allow details to grow and fill space */
+        flex-grow: 1; 
         display: flex;
         flex-direction: column;
     }
@@ -134,7 +134,7 @@ Customer List
         line-height: 1.5;
     }
     
-    /* Badge styling */
+    
     .badge {
         padding: 8px 12px;
         border-radius: 20px;
@@ -154,7 +154,7 @@ Customer List
         color: white;
     }
     
-    /* Button enhancements - FIXED ALIGNMENT */
+    
     .btn {
         border-radius: 8px;
         font-weight: 600;
@@ -177,7 +177,7 @@ Customer List
         box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
     }
     
-    /* FIXED: Edit button - made smaller and sky blue with animation */
+    
     .btn-edit {
         background: linear-gradient(45deg, #4fc3f7, #29b6f6);
         border: none;
@@ -195,13 +195,13 @@ Customer List
         box-shadow: 0 4px 12px rgba(79, 195, 247, 0.4);
         color: white;
         background: linear-gradient(45deg, #29b6f6, #039be5);
-        animation: none; /* Stop pulse animation on hover */
+        animation: none; 
     }
     
     .btn-success {
         background: linear-gradient(45deg, #4caf50, #2e7d32);
         border: none;
-        box-shadow: 0 4极速px 15px rgba(76, 175, 80, 0.3);
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
         color: white;
     }
     
@@ -211,7 +211,7 @@ Customer List
         color: white;
     }
     
-    /* Search form enhancements */
+    
     .search-element {
         margin-bottom: 20px;
     }
@@ -219,7 +219,7 @@ Customer List
     .form-control {
         border: 2px solid #e9ecef;
         border-radius: 8px;
-        padding: 12极速px 15px;
+        padding: 12px 15px;
         transition: all 0.3s;
         box-shadow: none;
     }
@@ -229,16 +229,16 @@ Customer List
         box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
     
-    /* FIXED: Button container alignment - REMOVED TOGGLE SWITCH */
+    
     .article-cta {
         display: flex;
-        justify-content: flex-end; /* Changed from space-between to flex-end */
+        justify-content: flex-end; 
         align-items: center;
         width: 100%;
         margin-top: 15px;
     }
     
-    /* Pagination enhancements */
+    
     .pagination {
         justify-content: center;
     }
@@ -268,11 +268,11 @@ Customer List
         box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
     }
     
-    .极速page-item.disabled .page-link {
+    .page-item.disabled .page-link {
         opacity: 0.6;
     }
     
-    /* Sort by links */
+    
     .card-body a {
         color: #4361ee;
         font-weight: 600;
@@ -288,7 +288,7 @@ Customer List
         transform: translateY(-2px);
     }
     
-    /* Empty state */
+   
     .empty-state {
         text-align: center;
         padding: 40px;
@@ -307,7 +307,7 @@ Customer List
         margin-bottom: 15px;
     }
     
-    /* Search form layout */
+    
     .d-flex {
         display: flex;
         align-items: center;
@@ -321,7 +321,7 @@ Customer List
         margin-left: 0.5rem !important;
     }
     
-    /* Ensure consistent card heights in row */
+    
     .row {
         display: flex;
         flex-wrap: wrap;
@@ -365,7 +365,7 @@ Customer List
             <div class="card-body">
                 <b>Sort By: </b>
                 <a href="{% url 'customer_list' %}?filter={{ filter }}&orderby=id" class="{% if orderby == 'id' %}text-decoration-underline{% endif %}">ID</a>  | 
-                <a href="{% url 'customer_list' %}极速?filter={{ filter }}&orderby=created_at" class="{% if orderby == 'created_at' %}text-decoration-underline{% endif %}">Newest</a> |  
+                <a href="{% url 'customer_list' %}?filter={{ filter }}&orderby=created_at" class="{% if orderby == 'created_at' %}text-decoration-underline{% endif %}">Newest</a> |  
                 <a href="{% url 'customer_list' %}?filter={{ filter }}&orderby=auth_user_id__first_name" class="{% if orderby == 'auth_user_id__first_name' %}text-decoration-underline{% endif %}">First Name</a> |
                 <a href="{% url 'customer_list' %}?filter={{ filter }}&orderby=auth_user_id__username" class="{% if orderby == 'auth_user_id__username' %}text-decoration-underline{% endif %}">Username</a>
             </div>
@@ -393,7 +393,7 @@ Customer List
                     <p><span class="badge badge-info"><i class="fas fa-envelope"></i> Email: {{ customeruser.auth_user_id.email }}</span></p>
                     
                     <div class="article-cta">
-                        <!-- REMOVED: Active toggle button -->
+                        
                         <a href="{% url 'customer_update' customeruser.auth_user_id.id %}" class="btn btn-edit">
                             <i class="fas fa-edit"></i> EDIT
                         </a>
@@ -455,7 +455,7 @@ Customer List
                             </li>
                         {% else %}
                             <li class="page-item disabled">
-                                <a class="page-link" href="#">Next <极速i class="fas fa-chevron-right"></i></a>
+                                <a class="page-link" href="#">Next <i class="fas fa-chevron-right"></i></a>
                             </li>
                         {% endif %}
                     </ul>
@@ -469,15 +469,15 @@ Customer List
 
 {% block custom_js %}
 <script>
-    // Add animation to page elements on load
+    
     document.addEventListener('DOMContentLoaded', function() {
-        // Animate search card
+        
         const searchCard = document.querySelector('.search-element .card');
         if (searchCard) {
             searchCard.style.animation = 'slideInRight 0.5s ease-out';
         }
         
-        // Add hover effect to cards
+        
         const articles = document.querySelectorAll('.article');
         articles.forEach(article => {
             article.addEventListener('mouseenter', function() {

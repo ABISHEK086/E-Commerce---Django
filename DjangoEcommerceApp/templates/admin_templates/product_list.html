@@ -3,8 +3,372 @@
 Product List
 {% endblock title %}
 
-
 {% block custom_css %}
+<style>
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(30px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes editPulse {
+        0% { box-shadow: 0 0 0 0 rgba(79, 195, 247, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(79, 195, 247, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(79, 195, 247, 0); }
+    }
+    
+    
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    
+    .search-element .card {
+        animation: slideInRight 0.5s ease-out;
+    }
+    
+    
+    .article {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        opacity: 0;
+        animation: fadeIn 0.6s ease-out forwards;
+        height: 100%; /* Ensure consistent height */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .article:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+    
+    .col-lg-3:nth-child(1) .article { animation-delay: 0.1s; }
+    .col-lg-3:nth-child(2) .article { animation-delay: 0.2s; }
+    .col-lg-3:nth-child(3) .article { animation-delay: 0.3s; }
+    .col-lg-3:nth-child(4) .article { animation-delay: 0.4s; }
+    .col-lg-3:nth-child(5) .article { animation-delay: 0.5s; }
+    .col-lg-3:nth-child(6) .article { animation-delay: 0.6s; }
+    
+    
+    .article-header {
+        position: relative;
+        height: 200px; 
+        overflow: hidden;
+        flex-shrink: 0; 
+    }
+    
+    .article-image {
+        background-size: cover !important;
+        background-position: center !important;
+        height: 100%;
+        transition: all 0.5s ease;
+        width: 100%;
+    }
+    
+    .article:hover .article-image {
+        transform: scale(1.1);
+    }
+    
+    
+    .article-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+    
+    .article:hover .article-badge {
+        transform: translateY(-5px);
+    }
+    
+    .article-badge-item {
+        border-radius: 20px;
+        padding: 8px 15px;
+        font-weight: 600;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        background: linear-gradient(45deg, #4361ee, #3a0ca3) !important;
+        color: white;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px; 
+    }
+    
+    
+    .article-details {
+        padding: 20px;
+        background: white;
+        flex-grow: 1; 
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .article-details p {
+        color: #6c757d;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+    
+   
+    .badge {
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        display: block;
+        width: 100%;
+    }
+    
+    .badge-warning {
+        background: linear-gradient(45deg, #ff9800, #f57c00);
+        color: white;
+    }
+    
+    .badge-info {
+        background: linear-gradient(45deg, #4fc3f7, #29b6f6);
+        color: white;
+    }
+    
+    .badge-primary {
+        background: linear-gradient(45deg, #4361ee, #3a0ca3);
+        color: white;
+    }
+    
+    
+    .btn {
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(45deg, #4361ee, #3a0ca3);
+        border: none;
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+        color: white;
+    }
+    
+    .btn-warning {
+        background: linear-gradient(45deg, #ff9800, #f57c00);
+        border: none;
+        box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+        color: white;
+    }
+    
+    .btn-warning:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 20px rgba(255, 152, 0, 0.4);
+        color: white;
+    }
+    
+    .btn-danger {
+        background: linear-gradient(45deg, #f44336, #c62828);
+        border: none;
+        box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+        color: white;
+    }
+    
+    .btn-danger:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 20px rgba(244, 67, 54, 0.4);
+        color: white;
+    }
+    
+    .btn-success {
+        background: linear-gradient(45deg, #4caf50, #2e7d32);
+        border: none;
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        color: white;
+    }
+    
+    .btn-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 20px rgba(76, 175, 80, 0.4);
+        color: white;
+    }
+    
+    
+    .btn-edit {
+        background: linear-gradient(45deg, #4fc3f7, #29b6f6);
+        border: none;
+        box-shadow: 0 2px 8px rgba(79, 195, 247, 0.3);
+        color: white;
+        padding: 6px 12px;
+        font-size: 12px;
+        min-width: 60px;
+        height: 32px;
+        animation: editPulse 2s infinite;
+    }
+    
+    .btn-edit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(79, 195, 247, 0.4);
+        color: white;
+        background: linear-gradient(45deg, #29b6f6, #039be5);
+        animation: none; 
+    }
+    
+    
+    .search-element {
+        margin-bottom: 20px;
+    }
+    
+    .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 12px 15px;
+        transition: all 0.3s;
+        box-shadow: none;
+    }
+    
+    .form-control:focus {
+        border-color: #4361ee;
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+    }
+    
+    
+    .article-cta {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+   
+    .pagination {
+        justify-content: center;
+    }
+    
+    .page-item {
+        margin: 0 5px;
+    }
+    
+    .page-link {
+        border-radius: 8px !important;
+        border: none;
+        padding: 10px 18px;
+        font-weight: 600;
+        color: #495057;
+        transition: all 0.3s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+    
+    .page-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    
+    .page-item.active .page-link {
+        background: linear-gradient(45deg, #4361ee, #3a0ca3);
+        border: none;
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        color: white;
+    }
+    
+    .page-item.disabled .page-link {
+        opacity: 0.6;
+    }
+    
+    
+    .card-body a {
+        color: #4361ee;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+        padding: 5px 10px;
+        border-radius: 6px;
+    }
+    
+    .card-body a:hover {
+        color: #3a0ca3;
+        background: rgba(67, 97, 238, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px;
+        opacity: 0;
+        animation: fadeIn 0.6s ease-out 0.3s forwards;
+    }
+    
+    .empty-state i {
+        font-size: 5rem;
+        color: #e9ecef;
+        margin-bottom: 20px;
+    }
+    
+    .empty-state h4 {
+        color: #6c757d;
+        margin-bottom: 15px;
+    }
+    
+   
+    .d-flex {
+        display: flex;
+        align-items: center;
+    }
+    
+    .me-2 {
+        margin-right: 0.5rem !important;
+    }
+    
+    .ms-2 {
+        margin-left: 0.5rem !important;
+    }
+    
+    
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .col-lg-3 {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+</style>
 {% endblock custom_css %}
 
 {% block page_title %}
@@ -15,96 +379,171 @@ Product List
 <div class="row">
     <div class="col-lg-12">
         <div class="search-element">
-        <div class="card">
-                  
-                  <div class="card-body">
-                  <form method="get">
-                    <button class="btn  btn-primary" type="submit" style="float:right"><i class="fas fa-search"></i> Search</button>
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250" style="width: 250px;float:right" name="filter" value="{{ filter }}">
-                   </form>
-                  </div>
-                  
+            <div class="card">
+                <div class="card-body">
+                    <form method="get" class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search" name="filter" value="{{ filter }}">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                        <a href="{% url 'product_view' %}" class="btn btn-success ms-2">
+                            <i class="fas fa-plus"></i> Add New
+                        </a>
+                    </form>
                 </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="search-element">
-        <div class="card">
-                  
-            <div class="card-body">
-                <b>Sort By : - </b>
-                <a href="{% url 'product_list' %}?filter={{ filter }}&orderby=id">ID</a>  | 
-                <a href="{% url 'product_list' %}?filter={{ filter }}&orderby=product_name">Title</a> |  
-                <a href="{% url 'product_list' %}?filter={{ filter }}&orderby=product_description">Description</a> 
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <b>Sort By: </b>
+                <a href="{% url 'product_list' %}?filter={{ filter }}&orderby=id" class="{% if orderby == 'id' %}text-decoration-underline{% endif %}">ID</a>  | 
+                <a href="{% url 'product_list' %}?filter={{ filter }}&orderby=product_name" class="{% if orderby == 'product_name' %}text-decoration-underline{% endif %}">Title</a> |  
+                <a href="{% url 'product_list' %}?filter={{ filter }}&orderby=product_description" class="{% if orderby == 'product_description' %}text-decoration-underline{% endif %}">Description</a> |
+                <a href="{% url 'product_list' %}?filter={{ filter }}&orderby=-created_at" class="{% if orderby == '-created_at' %}text-decoration-underline{% endif %}">Newest</a> |
+                <a href="{% url 'product_list' %}?filter={{ filter }}&orderby=created_at" class="{% if orderby == 'created_at' %}text-decoration-underline{% endif %}">Oldest</a>
+            </div>
         </div>
     </div>
 </div>
+
 <div class="row">
-{% for product in object_list %}
-<div class="col-12 col-sm-6 col-md-6 col-lg-3">
-    <article class="article article-style-b">
-        <div class="article-header">
-        <div class="article-image" data-background="{{ product.media.media_content }}" style="background-image: url(&quot;assets/img/news/img13.jpg&quot;);">
+    {% for product in object_list %}
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+        <article class="article article-style-b">
+            <div class="article-header">
+                <div class="article-image" data-background="{{ product.media.media_content }}" 
+                     style="background-image: url('{{ product.media.media_content }}');">
+                </div>
+                <div class="article-badge">
+                    <div class="article-badge-item">
+                        <i class="fas fa-fire"></i> {{ product.product.product_name|truncatechars:15 }}
+                    </div>
+                </div>
+            </div>
+            <div class="article-details">
+                <p><span class="badge badge-primary">{{ product.product.subcategories_id.title }}</span></p>
+                <p>{{ product.product.product_description|truncatewords:15 }}</p>
+                <p><span class="badge badge-warning">Slug: {{ product.product.url_slug }}</span></p>
+                
+                <div class="article-cta">
+                    <a href="{% url 'product_edit' product_id=product.product.id %}" class="btn btn-warning btn-block">
+                        <i class="fas fa-edit"></i> EDIT
+                    </a>
+                    
+                    <a href="{% url 'product_add_media' product_id=product.product.id %}" class="btn btn-danger btn-block">
+                        <i class="fas fa-image"></i> ADD MEDIA
+                    </a>
+                    
+                    <a href="{% url 'product_edit_media' product_id=product.product.id %}" class="btn btn-success btn-block">
+                        <i class="fas fa-camera"></i> EDIT MEDIA
+                    </a>
+                    
+                    <a href="{% url 'product_add_stocks' product_id=product.product.id %}" class="btn btn-primary btn-block">
+                        <i class="fas fa-boxes"></i> MANAGE STOCKS
+                    </a>
+                </div>
+            </div>
+        </article>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="empty-state">
+            <i class="fas fa-box-open"></i>
+            <h4>No products found</h4>
+            <p>Try adjusting your search or create a new product</p>
+            <a href="{% url 'product_view' %}" class="btn btn-primary mt-3">
+                <i class="fas fa-plus"></i> Create New Product
+            </a>
         </div>
-        <div class="article-badge">
-            <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>{{ product.product.product_name }}</div>
-        </div>
-        </div>
-        <div class="article-details">
-        <p><span class="badge badge-primary">{{ product.product.subcategories_id.title }}</span></p>
-        <p>{{ subcategory.description }}</p>
-        <p><span class="badge badge-warning">Url Slug : {{ product.product.url_slug }}</span></p>
-        <div class="article-cta">
-            <label class="custom-switch mt-2" style="float:left">
-                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" {% if product.product.is_active == 1 %}checked{% endif %}>
-                        <span class="custom-switch-indicator"></span>
-                        <span class="custom-switch-description">ACTIVE</span>
-            </label>
-            <a href="{% url 'product_edit' product_id=product.product.id %}" class="btn btn-warning ">EDIT <i class="fas fa-chevron-right"></i></a>
-            <div><br></div>
-            <a href="{% url 'product_add_media' product_id=product.product.id %}" class="btn btn-danger btn-block">ADD MEDIA <i class="fas fa-chevron-right"></i></a>
-            <a href="{% url 'product_edit_media' product_id=product.product.id %}" class="btn btn-success btn-block">EDIT MEDIA <i class="fas fa-chevron-right"></i></a>
-            <a href="{% url 'product_add_stocks' product_id=product.product.id %}" class="btn btn-primary btn-block">ADD Stocks <i class="fas fa-chevron-right"></i></a>
-        </div>
-        </div>
-    </article>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
-</div>
+
+{% if page_obj.has_other_pages %}
 <div class="row">
-<div class="col-lg-12">
-<div class="card">
-                 
-                  <div class="card-body">
-                    <nav aria-label="Page navigation example">
-                      <ul class="pagination">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
                         {% if page_obj.has_previous %}
-                            <li class="page-item"><a class="page-link" href="{% url 'product_list' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.previous_page_number }}">Previous</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'product_list' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.previous_page_number }}">
+                                    <i class="fas fa-chevron-left"></i> Previous
+                                </a>
+                            </li>
                         {% else %}
-                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#"><i class="fas fa-chevron-left"></i> Previous</a>
+                            </li>
                         {% endif %}
+                        
                         {% for i in paginator.page_range %}
-                                <li class="page-item {% if i == page_obj.number %}active{% endif %}"><a class="page-link" href="{% url 'product_list' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ i }}">{{ i }}</a></li>
+                            {% if page_obj.number == i %}
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">{{ i }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{% url 'product_list' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ i }}">{{ i }}</a>
+                                </li>
+                            {% endif %}
                         {% endfor %}
+                        
                         {% if page_obj.has_next %}
-                            <li class="page-item"><a class="page-link" href="{% url 'product_list' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.next_page_number }}">Next</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'product_list' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.next_page_number }}">
+                                    Next <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
                         {% else %}
-                            <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Next <i class="fas fa-chevron-right"></i></a>
+                            </li>
                         {% endif %}
-
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
-                </div>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
-
+{% endif %}
 {% endblock page_content %}
 
-
 {% block custom_js %}
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+       
+        const searchCard = document.querySelector('.search-element .card');
+        if (searchCard) {
+            searchCard.style.animation = 'slideInRight 0.5s ease-out';
+        }
+        
+        
+        const articles = document.querySelectorAll('.article');
+        articles.forEach(article => {
+            article.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 25px rgba(0,0,0,0.12)';
+            });
+            
+            article.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.08)';
+            });
+        });
+        
+        
+        const articleItems = document.querySelectorAll('.article');
+        articleItems.forEach((article, index) => {
+            article.style.animationDelay = `${0.1 + (index * 0.1)}s`;
+        });
+    });
+</script>
 {% endblock custom_js %}

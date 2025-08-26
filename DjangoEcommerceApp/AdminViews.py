@@ -119,14 +119,14 @@ class MerchantUserCreateView(SuccessMessageMixin,CreateView):
 
     def form_valid(self,form):
 
-        #Saving Custom User Object for Merchant User
+        
         user=form.save(commit=False)
         user.is_active=True
         user.user_type=3
         user.set_password(form.cleaned_data["password"])
         user.save()
 
-        #Saving Merchant user
+        
         profile_pic=self.request.FILES["profile_pic"]
         fs=FileSystemStorage()
         filename=fs.save(profile_pic.name,profile_pic)
@@ -159,7 +159,7 @@ class MerchantUserUpdateView(SuccessMessageMixin,UpdateView):
 
     def form_valid(self,form):
 
-        #Saving Custom User Object for Merchant User
+        
         user=form.save(commit=False)
         user.set_password(form.cleaned_data["password"])
         user.save()
@@ -414,7 +414,7 @@ class ProductMediaDelete(View):
         import os
         from DjangoEcommerce import settings
 
-        #It will work too Sometimes
+        
         #product_media.media_content.delete()
         os.remove(settings.MEDIA_ROOT.replace("\media","")+str(product_media.media_content).replace("/","\\"))
         
@@ -473,14 +473,14 @@ class StaffUserCreateView(SuccessMessageMixin,CreateView):
 
     def form_valid(self,form):
 
-        #Saving Custom User Object for Merchant User
+        
         user=form.save(commit=False)
         user.is_active=True
         user.user_type=2
         user.set_password(form.cleaned_data["password"])
         user.save()
 
-        #Saving Merchant user
+        
         profile_pic=self.request.FILES["profile_pic"]
         fs=FileSystemStorage()
         filename=fs.save(profile_pic.name,profile_pic)
@@ -504,11 +504,11 @@ class StaffUserUpdateView(SuccessMessageMixin,UpdateView):
 
     def form_valid(self,form):
 
-        #Saving Custom User Object for Merchant User
+        
         user=form.save(commit=False)
         user.save()
 
-        #Saving Merchant user
+        
         staffuser=StaffUser.objects.get(auth_user_id=user.id)
         if self.request.FILES.get("profile_pic",False):
             profile_pic=self.request.FILES["profile_pic"]
@@ -552,7 +552,7 @@ class CustomerUserCreateView(SuccessMessageMixin,CreateView):
 
     def form_valid(self,form):
 
-        #Saving Custom User Object for Merchant User
+        
         user=form.save(commit=False)
         user.is_active=True
         user.user_type=4

@@ -15,12 +15,12 @@ if(window.Chart) {
   Chart.defaults.global.tooltips.cornerRadius = 3;
 }
 
-// DropzoneJS
+
 if(window.Dropzone) {
   Dropzone.autoDiscover = false;
 }
 
-// Basic confirm box
+
 $('[data-confirm]').each(function() {
   var me = $(this),
       me_data = me.data('confirm');
@@ -49,7 +49,7 @@ $('[data-confirm]').each(function() {
   })
 });
 
-// Global
+
 $(function() {
   let sidebar_nicescroll_opts = {
     cursoropacitymin: 0,
@@ -289,20 +289,20 @@ $(function() {
     }
   });
 
-  // tooltip
+ 
   $("[data-toggle='tooltip']").tooltip();
 
-  // popover
+  
   $('[data-toggle="popover"]').popover({
     container: 'body'
   });
 
-  // Select2
+  
   if(jQuery().select2) {
     $(".select2").select2();
   }
 
-  // Selectric
+ 
   if(jQuery().selectric) {
     $(".selectric").selectric({
       disableOnMobile: false,
@@ -364,7 +364,7 @@ $(function() {
     });
   }
 
-  // Follow function
+  
   $('.follow-btn, .following-btn').each(function() {
     var me = $(this),
         follow_text = 'Follow',
@@ -390,7 +390,7 @@ $(function() {
     });
   });
 
-  // Dismiss function
+  
   $("[data-dismiss]").each(function() {
     var me = $(this),
         target = me.data('dismiss');
@@ -403,7 +403,7 @@ $(function() {
     });
   });
 
-  // Collapsable
+  
   $("[data-collapse]").each(function() {
     var me = $(this),
         target = me.data('collapse');
@@ -420,7 +420,7 @@ $(function() {
     });
   });
 
-  // Gallery
+  
   $(".gallery .gallery-item").each(function() {
     var me = $(this);
 
@@ -445,7 +445,7 @@ $(function() {
     });
   }
 
-  // Background
+  
   $("[data-background]").each(function() {
     var me = $(this);
     me.css({
@@ -453,7 +453,7 @@ $(function() {
     });
   });
 
-  // Custom Tab
+  
   $("[data-tab]").each(function() {
     var me = $(this);
 
@@ -473,7 +473,7 @@ $(function() {
     });
   });
 
-  // Bootstrap 4 Validation
+  
   $(".needs-validation").submit(function() {
     var form = $(this);
     if (form[0].checkValidity() === false) {
@@ -483,7 +483,7 @@ $(function() {
     form.addClass('was-validated');
   });
 
-  // alert dismissible
+ 
   $(".alert-dismissible").each(function() {
     var me = $(this);
 
@@ -495,7 +495,7 @@ $(function() {
   if($('.main-navbar').length) {
   }
 
-  // Image cropper
+  
   $('[data-crop-image]').each(function(e) {
     $(this).css({
       overflow: 'hidden',
@@ -504,7 +504,7 @@ $(function() {
     });
   });
 
-  // Slide Toggle
+  
   $('[data-toggle-slide]').click(function() {
     let target = $(this).data('toggle-slide');
 
@@ -512,33 +512,33 @@ $(function() {
     return false;
   });
 
-  // Dismiss modal
+  
   $("[data-dismiss=modal]").click(function() {
     $(this).closest('.modal').modal('hide');
 
     return false;
   });
 
-  // Width attribute
+ 
   $('[data-width]').each(function() {
     $(this).css({
       width: $(this).data('width')
     });
   });
   
-  // Height attribute
+  
   $('[data-height]').each(function() {
     $(this).css({
       height: $(this).data('height')
     });
   });
 
-  // Chocolat
+  
   if($('.chocolat-parent').length && jQuery().Chocolat) {
     $('.chocolat-parent').Chocolat();
   }
 
-  // Sortable card
+  
   if($('.sortable-card').length && jQuery().sortable) {
     $('.sortable-card').sortable({
       handle: '.card-header',
@@ -547,7 +547,7 @@ $(function() {
     });
   }
 
-  // Daterangepicker
+  
   if(jQuery().daterangepicker) {
     if($(".datepicker").length) {
       $('.datepicker').daterangepicker({
@@ -572,7 +572,7 @@ $(function() {
     }
   }
 
-  // Timepicker
+  
   if(jQuery().timepicker && $(".timepicker").length) {
     $(".timepicker").timepicker({
       icons: {

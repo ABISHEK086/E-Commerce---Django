@@ -52,7 +52,7 @@ $("#modal-5").fireModal({
     let form_data = $(e.target).serialize();
     console.log(form_data)
 
-    // DO AJAX HERE
+
     let fake_ajax = setTimeout(function() {
       form.stopProgress();
       modal.find('.modal-body').prepend('<div class="alert alert-info">Please check your browser console</div>')

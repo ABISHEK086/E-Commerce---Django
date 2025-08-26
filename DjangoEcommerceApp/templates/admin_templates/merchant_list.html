@@ -5,7 +5,7 @@ Merchant User List
 
 {% block custom_css %}
 <style>
-    /* Animation styles */
+    
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -22,7 +22,7 @@ Merchant User List
         to { opacity: 1; transform: translateX(0); }
     }
     
-    /* Card animations */
+    
     .card {
         border: none;
         border-radius: 12px;
@@ -41,7 +41,7 @@ Merchant User List
         animation: slideInRight 0.5s ease-out;
     }
     
-    /* Article/item animations - FIXED CARD SIZE */
+    
     .article {
         border-radius: 12px;
         overflow: hidden;
@@ -64,10 +64,10 @@ Merchant User List
     .col-lg-4:nth-child(3) .article { animation-delay: 0.3s; }
     .col-lg-4:nth-child(4) .article { animation-delay: 0.4s; }
     
-    /* Article header enhancements - FIXED IMAGE DISPLAY */
+    
     .article-header {
         position: relative;
-        height: 160px; /* Slightly reduced to accommodate wider layout */
+        height: 160px; 
         overflow: hidden;
         flex-shrink: 0;
     }
@@ -84,7 +84,7 @@ Merchant User List
         transform: scale(1.1);
     }
     
-    /* Merchant name/badge positioning and hover effect */
+    
     .article-badge {
         position: absolute;
         top: 15px;
@@ -108,10 +108,10 @@ Merchant User List
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 150px; /* Increased to accommodate longer names */
+        max-width: 150px; 
     }
     
-    /* Article details enhancements - FIXED CARD CONTENT SIZE */
+    
     .article-details {
         padding: 20px;
         background: white;
@@ -124,10 +124,10 @@ Merchant User List
         color: #6c757d;
         margin-bottom: 15px;
         line-height: 1.5;
-        word-break: break-word; /* Ensure long text breaks properly */
+        word-break: break-word; 
     }
     
-    /* Badge styling */
+    
     .badge {
         padding: 8px 12px;
         border-radius: 20px;
@@ -135,7 +135,7 @@ Merchant User List
         margin-bottom: 15px;
         display: flex;
         align-items: center;
-        white-space: normal; /* Allow text to wrap */
+        white-space: normal; 
         line-height: 1.4;
     }
     
@@ -164,7 +164,7 @@ Merchant User List
         color: white;
     }
     
-    /* Button enhancements */
+   
     .btn {
         border-radius: 8px;
         font-weight: 600;
@@ -187,7 +187,7 @@ Merchant User List
         box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
     }
     
-    /* Edit button */
+    
     .btn-edit {
         background: linear-gradient(45deg, #4fc3f7, #29b6f6);
         border: none;
@@ -219,7 +219,7 @@ Merchant User List
         color: white;
     }
     
-    /* Search form enhancements */
+    
     .search-element {
         margin-bottom: 20px;
     }
@@ -237,7 +237,7 @@ Merchant User List
         box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
     
-    /* Button container alignment */
+    
     .article-cta {
         display: flex;
         justify-content: flex-end;
@@ -246,7 +246,7 @@ Merchant User List
         margin-top: auto;
     }
     
-    /* Pagination enhancements */
+    
     .pagination {
         justify-content: center;
     }
@@ -280,7 +280,7 @@ Merchant User List
         opacity: 0.6;
     }
     
-    /* Sort by links */
+    
     .card-body a {
         color: #4361ee;
         font-weight: 600;
@@ -296,7 +296,7 @@ Merchant User List
         transform: translateY(-2px);
     }
     
-    /* Empty state */
+    
     .empty-state {
         text-align: center;
         padding: 40px;
@@ -315,7 +315,7 @@ Merchant User List
         margin-bottom: 15px;
     }
     
-    /* Search form layout */
+    
     .d-flex {
         display: flex;
         align-items: center;
@@ -329,7 +329,7 @@ Merchant User List
         margin-left: 0.5rem !important;
     }
     
-    /* Ensure consistent card heights in row */
+    
     .row {
         display: flex;
         flex-wrap: wrap;
@@ -340,7 +340,7 @@ Merchant User List
         flex-direction: column;
     }
     
-    /* Media queries for responsiveness */
+    
     @media (max-width: 1199px) {
         .col-lg-4 {
             flex: 0 0 50%;
@@ -494,15 +494,15 @@ Merchant User List
 
 {% block custom_js %}
 <script>
-    // Add animation to page elements on load
+    
     document.addEventListener('DOMContentLoaded', function() {
-        // Animate search card
+        
         const searchCard = document.querySelector('.search-element .card');
         if (searchCard) {
             searchCard.style.animation = 'slideInRight 0.5s ease-out';
         }
         
-        // Add hover effect to cards
+        
         const articles = document.querySelectorAll('.article');
         articles.forEach(article => {
             article.addEventListener('mouseenter', function() {

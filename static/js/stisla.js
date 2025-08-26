@@ -1,7 +1,7 @@
 "use strict";
 
 (function($, window, i) {
-  // Bootstrap 4 Modal
+  
   $.fn.fireModal = function(options) {
     var options = $.extend({
       size: 'modal-md',
@@ -29,7 +29,7 @@
 
       $(this).addClass(trigger_class);
 
-      // Get modal body
+      
       let body = options.body;
 
       if(typeof body == 'object') {
@@ -42,7 +42,7 @@
         }
       }
 
-      // Modal base template
+      
       var modal_template = '   <div class="modal'+ (options.animation == true ? ' fade' : '') +'" tabindex="-1" role="dialog" id="'+ id +'">  '  + 
                  '     <div class="modal-dialog '+options.size+(options.center ? ' modal-dialog-centered' : '')+'" role="document">  '  + 
                  '       <div class="modal-content">  '  + 
@@ -66,65 +66,65 @@
                  '     </div>  '  + 
                  '  </div>  ' ; 
 
-      // Convert modal to object
+      
       var modal_template = $(modal_template);
 
-      // Start creating buttons from 'buttons' option
+      
       var this_button;
       options.buttons.forEach(function(item) {
-        // get option 'id'
+        
         let id = "id" in item ? item.id : '';
 
-        // Button template
+        
         this_button = '<button type="'+ ("submit" in item && item.submit == true ? 'submit' : 'button') +'" class="'+ item.class +'" id="'+ id +'">'+ item.text +'</button>';
 
-        // add click event to the button
+        
         this_button = $(this_button).off('click').on("click", function() {
-          // execute function from 'handler' option
+          
           item.handler.call(this, modal_template);
         });
-        // append generated buttons to the modal footer
+        
         $(modal_template).find('.modal-footer').append(this_button);
       });
 
-      // append a given body to the modal
+      
       $(modal_template).find('.modal-body').append(body);
 
-      // add additional body class
+      
       if(options.bodyClass) $(modal_template).find('.modal-body').addClass(options.bodyClass);
 
-      // add footer body class
+      
       if(options.footerClass) $(modal_template).find('.modal-footer').addClass(options.footerClass);
       
-      // execute 'created' callback
+      
       options.created.call(this, modal_template, options);
 
-      // modal form and submit form button
+      
       let modal_form = $(modal_template).find('.modal-body form'),
         form_submit_btn = modal_template.find('button[type=submit]');
 
-      // append generated modal to the body
+      
       $("body").append(modal_template);
 
-      // execute 'appended' callback
+      
       options.appended.call(this, $('#' + id), modal_form, options);
 
-      // if modal contains form elements
+     
       if(modal_form.length) {
-        // if `autoFocus` option is true
+        
         if(options.autoFocus) {
-          // when modal is shown
+          
           $(modal_template).on('shown.bs.modal', function() {
-            // if type of `autoFocus` option is `boolean`
+            
             if(typeof options.autoFocus == 'boolean')
-              modal_form.find('input:eq(0)').focus(); // the first input element will be focused
-            // if type of `autoFocus` option is `string` and `autoFocus` option is an HTML element
+              modal_form.find('input:eq(0)').focus(); 
+            
             else if(typeof options.autoFocus == 'string' && modal_form.find(options.autoFocus).length) 
-              modal_form.find(options.autoFocus).focus(); // find elements and focus on that
+              modal_form.find(options.autoFocus).focus(); 
           });
         }
 
-        // form object
+      
         let form_object = {
           startProgress: function() {
             modal_template.addClass('modal-progress');
@@ -134,20 +134,20 @@
           }
         };
 
-        // if form is not contains button element
+        
         if(!modal_form.find('button').length) $(modal_form).append('<button class="d-none" id="'+ id +'-submit"></button>');
 
-        // add click event
+       
         form_submit_btn.click(function() {
           modal_form.submit();
         });
 
-        // add submit event
+        
         modal_form.submit(function(e) {
-          // start form progress
+          
           form_object.startProgress();
 
-          // execute `onFormSubmit` callback
+          
           options.onFormSubmit.call(this, modal_template, e, form_object);
         });
       }
@@ -160,14 +160,14 @@
     });
   }
 
-  // Bootstrap Modal Destroyer
+  
   $.destroyModal = function(modal) {
     modal.modal('hide');
     modal.on('hidden.bs.modal', function() {
     });
   }
 
-  // Card Progress Controller
+  
   $.cardProgress = function(card, options) {
     var options = $.extend({
       dismiss: false,
@@ -214,7 +214,7 @@
       text: '',
       time: moment(new Date().toISOString()).format('hh:mm'),
       picture: '',
-      type: 'text', // or typing
+      type: 'text', 
       timeout: 0,
       onShow: function() {}
     }, chat);

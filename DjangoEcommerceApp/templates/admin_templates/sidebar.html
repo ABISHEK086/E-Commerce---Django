@@ -7,7 +7,7 @@
     <title>SuperStore Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Sidebar Animations and Styles */
+        
         .main-sidebar {
             width: 260px;
             background: #fff;
@@ -134,7 +134,7 @@
             transform: rotate(180deg);
         }
 
-        /* FIXED: Dropdown menu alignment */
+        
         .dropdown-menu {
             border: none;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -210,7 +210,7 @@
             left: 0;
         }
 
-        /* Animation for menu items */
+        
         .sidebar-menu li {
             opacity: 0;
             transform: translateX(-20px);
@@ -232,7 +232,7 @@
             }
         }
 
-        /* Hover effects for dropdown items */
+        
         .dropdown-menu .nav-link {
             position: relative;
             overflow: hidden;
@@ -253,7 +253,7 @@
             left: 100%;
         }
         
-        /* Ripple effect styles */
+        
         .ripple-effect {
             position: absolute;
             border-radius: 50%;
@@ -284,7 +284,7 @@
             <ul class="sidebar-menu">
                 <li class="menu-header"></li>
                 
-                {% comment %} DASHBOARD MENU - FIXED URL {% endcomment %}
+                
                 {% url 'home' as home_url %}
                 <li class="{% if request.path == home_url %} active {% endif %}">
                     <a href="{% url 'home' %}" class="nav-link sidebar-item">
@@ -294,7 +294,7 @@
                     </a>
                 </li>
 
-                {% comment %} CATEGORY MENU {% endcomment %}
+                
                 {% url 'category_list' as category_list %}
                 {% url 'category_create' as category_create %}
                 {% url 'category_update' id as category_update %}
@@ -311,7 +311,7 @@
                     </ul>
                 </li>
 
-                {% comment %} SUB CATEGORY MENU {% endcomment %}
+                
                 {% url 'sub_category_list' as sub_category_list %}
                 {% url 'sub_category_create' as sub_category_create %}
                 {% url 'sub_category_update' id as sub_category_update %}
@@ -328,7 +328,7 @@
                     </ul>
                 </li>
 
-                {% comment %} Merchant User MENU {% endcomment %}
+                
                 {% url 'merchant_create' as merchant_create %}
                 {% url 'merchant_list' as merchant_list %}
                 {% url 'merchant_update' id as merchant_update %}
@@ -345,7 +345,7 @@
                     </ul>
                 </li>  
 
-                {% comment %} STAFF USER URLS {% endcomment %}
+                
                 {% url 'staff_create' as staff_create %}
                 {% url 'staff_list' as staff_list %}
                 {% url 'staff_update' id as staff_update %}
@@ -362,7 +362,7 @@
                     </ul>
                 </li>      
 
-                {% comment %} CUSTOMER USER URLS {% endcomment %}
+               
                 {% url 'customer_create' as customer_create %}
                 {% url 'customer_list' as customer_list %}
                 {% url 'customer_update' id as customer_update %}
@@ -379,7 +379,7 @@
                     </ul>
                 </li>      
 
-                {% comment %} PRODUCTS MENU {% endcomment %}
+                
                 {% url 'product_view' as product_view %}
                 {% url 'product_list' as product_list %}
                 {% url 'product_edit' product.id as product_edit %}
@@ -412,7 +412,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Add animation to dropdown menus
+            
             const dropdownToggles = document.querySelectorAll('.has-dropdown');
             
             dropdownToggles.forEach(toggle => {
@@ -421,7 +421,7 @@
                     const parent = this.parentElement;
                     parent.classList.toggle('show');
                     
-                    // Close other open dropdowns
+                    
                     dropdownToggles.forEach(otherToggle => {
                         if (otherToggle !== this) {
                             otherToggle.parentElement.classList.remove('show');
@@ -430,7 +430,7 @@
                 });
             });
             
-            // Close dropdowns when clicking outside
+           
             document.addEventListener('click', function(e) {
                 if (!e.target.closest('.dropdown')) {
                     document.querySelectorAll('.dropdown').forEach(dropdown => {
@@ -439,7 +439,7 @@
                 }
             });
             
-            // Add ripple effect to sidebar items
+            
             const sidebarItems = document.querySelectorAll('.sidebar-item');
             
             sidebarItems.forEach(item => {
