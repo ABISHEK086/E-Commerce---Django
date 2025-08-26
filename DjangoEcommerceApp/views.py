@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-# Create your views here.
+
 def demoPage(request):
     return HttpResponse("demo Page")
 
@@ -40,7 +40,6 @@ def admin_home(request):
 def upload_profile_picture(request):
     if request.method == 'POST' and request.FILES.get('profile_picture'):
         try:
-            # Save the file to the user's profile
             request.user.profile_picture = request.FILES['profile_picture']
             request.user.save()
             return JsonResponse({'success': True, 'message': 'Profile picture updated successfully!'})
@@ -52,8 +51,6 @@ def upload_profile_picture(request):
 def save_system_settings(request):
     if request.method == 'POST':
         try:
-            # store_name = request.POST.get('store_name')
-            # timezone = request.POST.get('timezone')
             return JsonResponse({'success': True, 'message': 'System settings saved successfully!'})
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)})
@@ -62,8 +59,6 @@ def save_system_settings(request):
 def update_features(request):
     if request.method == 'POST':
         try:
-            # email_notifications = request.POST.get('email_notifications')
-            # sms_notifications = request.POST.get('sms_notifications')
             return JsonResponse({'success': True, 'message': 'Feature settings updated successfully!'})
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)})
@@ -76,23 +71,23 @@ def update_password(request):
             new_password = request.POST.get('new_password')
             confirm_password = request.POST.get('confirm_password')
             
-            # Check if passwords match
+           
             if new_password != confirm_password:
                 return JsonResponse({'success': False, 'error': 'New password and confirm password do not match!'})
             
-            # Verify current password
+           
             if not request.user.check_password(current_password):
                 return JsonResponse({'success': False, 'error': 'Current password is incorrect!'})
             
-            # Check password length
+            
             if len(new_password) < 8:
                 return JsonResponse({'success': False, 'error': 'Password must be at least 8 characters long!'})
             
-            # Set new password
+            
             request.user.set_password(new_password)
             request.user.save()
             
-            # Keep user logged in after password change
+            
             update_session_auth_hash(request, request.user)
             
             return JsonResponse({'success': True, 'message': 'Password updated successfully!'})
