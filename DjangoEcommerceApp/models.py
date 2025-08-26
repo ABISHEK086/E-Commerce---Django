@@ -8,7 +8,7 @@ from django.urls import reverse
 class CustomUser(AbstractUser):
     user_type_choices=((1,"Admin"),(2,"Staff"),(3,"Merchant"),(4,"Customer"))
     user_type=models.CharField(max_length=255,choices=user_type_choices,default=1)
-    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)  # Added this line
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)  
 
 
 class AdminUser(models.Model):
