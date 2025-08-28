@@ -1,5 +1,6 @@
 
 from pathlib import Path
+from decouple import config
 import os
 
 
@@ -14,7 +15,7 @@ SECRET_KEY = '8$37$=e=f7mf%6zlyu==-wosqc&xt%rq&+fbs&rl72)z)7z89s'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["super-store-2ktn.onrender.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = []
 
 
 
