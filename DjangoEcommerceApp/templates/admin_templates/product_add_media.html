@@ -1,160 +1,195 @@
 {% extends 'admin_templates/base_template.html' %}
 {% block title %}
-Product ADD MEDIA
+Product Add Media
 {% endblock title %}
-
 
 {% block custom_css %}
 <link rel="stylesheet" href="//bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <style>
-.bootstrap-tagsinput{
-width:100%;
+.bootstrap-tagsinput {
+    width: 100%;
+}
+.media_div_row {
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.media_div_row.animate__animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+.img_preview, .video_preview {
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+.img_preview.show, .video_preview.show {
+    opacity: 1;
+}
+.progress {
+    transition: all 0.5s ease;
+}
+.progress-bar {
+    transition: width 0.5s ease-in-out, background-color 0.3s ease;
+}
+.btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: auto;
+    padding: 0.375rem 1rem;
+    display: inline-block;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.card {
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.02);
 }
 </style>
 {% endblock custom_css %}
 
 {% block page_title %}
-Product ADD MEDIA
+Add Media
 {% endblock page_title %}
 
 {% block page_content %}
 <div class="row">
     <div class="col-lg-12">
-            <div class="card">
-                <form id="myform">
+        <div class="card animate__animated animate__fadeIn">
+            <form id="myform">
                 {% csrf_token %}
                 <div class="card-body">
-                    <h5>Product ADD MEDIA #{{ product.id }}</h5>
-                
-
+                    <h5 class="animate__animated animate__bounceIn">Product Add Media {{ product.id }}</h5>
                     <div class="media_div">
-                    <div class="row media_div_row first_media">
-                        <div class="col-lg-4">
-                            <label>Media Type</label>
-                            <select name="media_type[]" class="form-control media_type">
-                                <option value="1">Image</option>
-                                <option value="2">Video</option>
-                            </select>
+                        <div class="row media_div_row first_media animate__animated animate__fadeInUp">
+                            <div class="col-lg-4">
+                                <label>Media Type</label>
+                                <select name="media_type[]" class="form-control media_type">
+                                    <option value="1">Image</option>
+                                    <option value="2">Video</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Select Media</label>
+                                <input type="file" name="media_content[]" class="form-control select_media" />
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Preview</label>
+                                <br>
+                                <img style="width:70%;display:none" class="img_preview">
+                                <br>
+                                <video style="width:70%;display:none" class="video_preview" controls>
+                            </div>
                         </div>
-                        <div class="col-lg-4">
-                            <label>Select Media</label>
-                            <input type="file" name="media_content[]" class="form-control select_media" />
-                        </div>
-                        <div class="col-lg-4">
-                            <label>Preview</label>
-                            <br>
-                            <img style="width:70%;display:none" class="img_preview">
-                            <br>
-                            <video style="width:70%;display:none" class="video_preview" controls>
-                        </div>
-                    </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-lg-6">
-                            <button class="btn btn-success btn-block add_media" type="button">ADD MEDIA CONTENT</button>
+                            <button class="btn btn-success add_media animate__animated animate__pulse" type="button">Add</button>
                         </div>
                         <div class="col-lg-6">
-                            <button class="btn btn-danger btn-block remove_media" type="button">REMOVE MEDIA CONTENT</button>
+                            <button class="btn btn-danger remove_media animate__animated animate__pulse" type="button">Remove</button>
                         </div>
                     </div>  
                     <br>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class='progress mb-3' style="height:auto">
-                                <div class="progress-bar bg-warning" id="progressbar" role="progressbar" data-width="0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="display:none;width: 0%;height: 30px;border-radius: 10px;">0%</div>
+                                <div class="progress-bar bg-warning animate__animated animate__fadeIn" id="progressbar" role="progressbar" data-width="0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="display:none;width: 0%;height: 30px;border-radius: 10px;">0%</div>
                             </div>
                         </div>
                     </div>
                     <br>
-
                     <div class="row">
-                        <button type="button" class="btn btn-primary btn-block submit_btn">SAVE PRODUCT MEDIA</button>
+                        <button type="button" class="btn btn-primary submit_btn animate__animated animate__pulse">Save</button>
                     </div>
-
-                 </div>
-                 </form>
-            </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock page_content %}
 
-
 {% block custom_js %}
-
 <script>
-    $(".add_media").click(function(){
-        var media_row=$(".first_media").clone();
+$(document).ready(function() {
+    $(".add_media").click(function() {
+        var media_row = $(".first_media").clone();
         media_row.removeClass("first_media");
-        media_row.replaceAll("src","")
         media_row.find(".select_media").val("");
-        media_row.find(".img_preview").attr("src","").css({"border":"none"}).css({"border-radius":"0px"}).hide();
-        media_row.find(".video_preview").attr("src","").css({"border":"none"}).css({"border-radius":"0px"}).hide();
+        media_row.find(".img_preview").attr("src", "").css({"border": "none", "border-radius": "0px"}).hide();
+        media_row.find(".video_preview").attr("src", "").css({"border": "none", "border-radius": "0px"}).hide();
+        media_row.addClass("animate__animated animate__fadeInUp");
         $(".media_div").append(media_row);
+        setTimeout(() => media_row.removeClass("animate__animated animate__fadeInUp"), 1000);
     });
-    $(".remove_media").click(function(){
-        if($(".media_div").find(".media_div_row").length>1){
-            $(".media_div").children().last().remove();
+
+    $(".remove_media").click(function() {
+        if ($(".media_div").find(".media_div_row").length > 1) {
+            var lastRow = $(".media_div").children().last();
+            lastRow.addClass("animate__animated animate__fadeOutDown");
+            setTimeout(() => lastRow.remove(), 500);
         }
     });
 
-
-    $(document).on("change",".select_media",function(){
-        var media_type=$(this).parents(".media_div_row").find(".media_type").val();
-        var img_preview=$(this).parents(".media_div_row").find(".img_preview");
-        var vid_preview=$(this).parents(".media_div_row").find(".video_preview");
-        showPreviewMedia(this,media_type,img_preview,vid_preview);
+    $(document).on("change", ".select_media", function() {
+        var media_type = $(this).parents(".media_div_row").find(".media_type").val();
+        var img_preview = $(this).parents(".media_div_row").find(".img_preview");
+        var vid_preview = $(this).parents(".media_div_row").find(".video_preview");
+        showPreviewMedia(this, media_type, img_preview, vid_preview);
     });
 
-    function showPreviewMedia(input,media_type,img_preview,video_preview){
-        if(input.files && input.files[0]){
-            var reader=new FileReader();
-            reader.onload=function(e){
-                if(media_type=="1"){
-                    img_preview.attr("src",e.target.result);
+    function showPreviewMedia(input, media_type, img_preview, video_preview) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                if (media_type == "1") {
+                    img_preview.attr("src", e.target.result);
+                    img_preview.addClass("show animate__animated animate__zoomIn");
+                    img_preview.css({"border": "5px solid orange", "border-radius": "10px"});
                     img_preview.show();
-                    img_preview.css({"border":"5px solid orange"});
-                    img_preview.css({"border-radius":"10px"});
+                    setTimeout(() => img_preview.removeClass("animate__animated animate__zoomIn"), 1000);
                 }
-                if(media_type=="2"){
+                if (media_type == "2") {
+                    video_preview.addClass("show animate__animated animate__zoomIn");
+                    video_preview.css({"border": "5px solid orange", "border-radius": "10px"});
+                    video_preview.attr("src", e.target.result);
                     video_preview.show();
-                    video_preview.css({"border":"5px solid orange"});
-                    video_preview.css({"border-radius":"10px"});
-                    video_preview.attr("src",e.target.result);
-                    video_preview.load();
-                    video_preview.play();
-
+                    video_preview[0].load();
+                    video_preview[0].play();
+                    setTimeout(() => video_preview.removeClass("animate__animated animate__zoomIn"), 1000);
                 }
             }
             reader.readAsDataURL(input.files[0]);
         }
     }
 
-
-    $(".submit_btn").click(function(){
-        var form=new FormData($("#myform")[0]);
-
-        //AJAX CODE
-        var xhr=new XMLHttpRequest();
-        xhr.onreadystatechange=function(){
-            if(xhr.status==200){
+    $(".submit_btn").click(function() {
+        var form = new FormData($("#myform")[0]);
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.status == 200) {
                 console.log(xhr.responseText);
             }
         }
-        xhr.open("POST","{% url 'product_add_media' product_id=product.id %}",true);
-        $("#progressbar").show();
-
-        //UPDATING PROGRESS BAR
-        xhr.upload.addEventListener("progress",function(ev){
-            if(ev.lengthComputable){
-                var percentage=(ev.loaded/ev.total*100|0);
-                $("#progressbar").css({"width":""+percentage+"%"}).text("Uploading .."+percentage+"%");
-                console.log(percentage);
+        xhr.open("POST", "{% url 'product_add_media' product_id=product.id %}", true);
+        $("#progressbar").show().addClass("animate__animated animate__fadeIn");
+        
+        xhr.upload.addEventListener("progress", function(ev) {
+            if (ev.lengthComputable) {
+                var percentage = (ev.loaded / ev.total * 100 | 0);
+                $("#progressbar").css({"width": percentage + "%"}).text("Uploading..." + percentage + "%");
+                if (percentage === 100) {
+                    $("#progressbar").removeClass("bg-warning").addClass("bg-success");
+                }
             }
         });
 
         xhr.send(form);
-    })
-
+    });
+});
 </script>
 {% endblock custom_js %}

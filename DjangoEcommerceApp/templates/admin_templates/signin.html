@@ -6,16 +6,61 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>Login &mdash; SuperStore</title>
 
-  
   <link rel="stylesheet" href="{% static '/modules/bootstrap/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static '/modules/fontawesome/css/all.min.css' %}">
-
-
   <link rel="stylesheet" href="{% static '/modules/bootstrap-social/bootstrap-social.css' %}">
-
-
   <link rel="stylesheet" href="{% static '/css/style.css' %}">
   <link rel="stylesheet" href="{% static '/css/components.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    .login-brand {
+      transition: all 0.3s ease;
+    }
+    .login-brand:hover {
+      transform: scale(1.05);
+    }
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .form-control {
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      transform: scale(1.01);
+      box-shadow: 0 0 8px rgba(103, 119, 239, 0.3);
+    }
+    .btn {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      width: auto;
+      padding: 0.5rem 2rem;
+      display: inline-block;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .input-group-append .btn {
+      transition: all 0.2s ease;
+    }
+    .input-group-append .btn:hover {
+      background-color: #6777ef;
+      color: white;
+    }
+    .alert {
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
+    .alert.show {
+      opacity: 1;
+    }
+    .simple-footer {
+      transition: all 0.3s ease;
+    }
+  </style>
 </head>
 
 <body>
@@ -24,18 +69,17 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-          
-            <div class="login-brand">
+            <div class="login-brand animate__animated animate__fadeInDown">
               <h2 style="font-weight: 700; color:#6777ef;">SuperStore</h2>
             </div>
 
-            <div class="card card-primary shadow">
-              <div class="card-header"><h4>Login</h4></div>
+            <div class="card card-primary shadow animate__animated animate__fadeInUp">
+              <div class="card-header"><h4 class="animate__animated animate__bounceIn">Login</h4></div>
 
               <div class="card-body">
                 <form method="POST" action="{% url 'admin_login_process' %}" class="needs-validation" novalidate="">
                   {% csrf_token %}
-                  <div class="form-group">
+                  <div class="form-group animate__animated animate__fadeInUp">
                     <label for="email">Username</label>
                     <input id="email" type="text" class="form-control" name="username" tabindex="1" required autofocus>
                     <div class="invalid-feedback">
@@ -43,14 +87,14 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
                     <div class="d-block">
                       <label for="password" class="control-label">Password</label>
                     </div>
                     <div class="input-group">
                       <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                        <button class="btn btn-outline-secondary animate__animated animate__pulse" type="button" id="togglePassword">
                           <i class="fas fa-eye"></i>
                         </button>
                       </div>
@@ -60,7 +104,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
                       <label class="custom-control-label" for="remember-me">Remember Me</label>
@@ -68,7 +112,7 @@
                   </div>
 
                   {% if messages %}
-                  <div class="form-group">
+                  <div class="form-group animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
                     {% for message in messages %}
                       <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
                         {{ message }}
@@ -80,8 +124,8 @@
                   </div>
                   {% endif %}
 
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4" id="loginBtn">
+                  <div class="form-group animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                    <button type="submit" class="btn btn-primary" tabindex="4" id="loginBtn">
                       <span id="btnText">Login</span>
                       <span id="btnSpinner" class="spinner-border spinner-border-sm d-none"></span>
                     </button>
@@ -89,8 +133,8 @@
                 </form>
               </div>
             </div>
-           
-            <div class="simple-footer">
+
+            <div class="simple-footer animate__animated animate__fadeInUp" style="animation-delay: 0.5s;">
               Copyright &copy; SuperStore 2025
             </div>
           </div>
@@ -99,7 +143,6 @@
     </section>
   </div>
 
-  
   <script src="{% static '/modules/jquery.min.js' %}"></script>
   <script src="{% static '/modules/popper.js' %}"></script>
   <script src="{% static '/modules/tooltip.js' %}"></script>
@@ -107,31 +150,39 @@
   <script src="{% static '/modules/nicescroll/jquery.nicescroll.min.js' %}"></script>
   <script src="{% static '/modules/moment.min.js' %}"></script>
   <script src="{% static '/js/stisla.js' %}"></script>
-  
-  
   <script src="{% static '/js/scripts.js' %}"></script>
   <script src="{% static '/js/custom.js' %}"></script>
 
-  
   <script>
-    
-    document.getElementById("togglePassword").addEventListener("click", function () {
-      let pwd = document.getElementById("password");
-      if (pwd.type === "password") {
-        pwd.type = "text";
-        this.querySelector("i").classList.remove("fa-eye");
-        this.querySelector("i").classList.add("fa-eye-slash");
-      } else {
-        pwd.type = "password";
-        this.querySelector("i").classList.remove("fa-eye-slash");
-        this.querySelector("i").classList.add("fa-eye");
-      }
-    });
+    $(document).ready(function() {
+      // Apply animation to alerts on load
+      $(".alert").each(function(index) {
+        $(this).delay(index * 100).queue(function(next) {
+          $(this).addClass("show animate__animated animate__fadeIn");
+          setTimeout(() => $(this).removeClass("animate__animated animate__fadeIn"), 1000);
+          next();
+        });
+      });
 
-    
-    document.getElementById("loginBtn").addEventListener("click", function () {
-      document.getElementById("btnText").classList.add("d-none");
-      document.getElementById("btnSpinner").classList.remove("d-none");
+      // Toggle password visibility
+      $("#togglePassword").click(function() {
+        let pwd = $("#password");
+        let icon = $(this).find("i");
+        if (pwd.attr("type") === "password") {
+          pwd.attr("type", "text");
+          icon.removeClass("fa-eye").addClass("fa-eye-slash");
+        } else {
+          pwd.attr("type", "password");
+          icon.removeClass("fa-eye-slash").addClass("fa-eye");
+        }
+      });
+
+      // Show spinner on login button click
+      $("#loginBtn").click(function() {
+        $("#btnText").addClass("d-none");
+        $("#btnSpinner").removeClass("d-none").addClass("animate__animated animate__rotateIn");
+        setTimeout(() => $("#btnSpinner").removeClass("animate__animated animate__rotateIn"), 1000);
+      });
     });
   </script>
 </body>

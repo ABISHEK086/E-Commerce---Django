@@ -6,7 +6,7 @@ Product Create
 {% block custom_css %}
 <link rel="stylesheet" href="//bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css"/>
 <style>
-    
+    /* Animation styles */
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -26,10 +26,16 @@ Product Create
     @keyframes progressGlow {
         0% { box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); }
         50% { box-shadow: 0 0 20px rgba(255, 193, 7, 0.8); }
-        100% { box-shadow: 0 0 5px rgba(255, 193极速, 7, 0.5); }
+        100% { box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); }
     }
     
+    @keyframes imagePulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+        100% { transform: scale(1); }
+    }
     
+    /* Card animations */
     .card {
         border: none;
         border-radius: 12px;
@@ -69,7 +75,7 @@ Product Create
         padding: 30px;
     }
     
-    
+    /* Form enhancements */
     .form-group {
         margin-bottom: 25px;
         position: relative;
@@ -102,9 +108,10 @@ Product Create
     .form-control:focus {
         border-color: #4361ee;
         box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+        transform: translateY(-2px);
     }
     
-    
+    /* Button enhancements */
     .btn {
         border-radius: 8px;
         font-weight: 600;
@@ -156,7 +163,7 @@ Product Create
         color: white;
     }
     
-    
+    /* Section headers */
     h5 {
         font-size: 1.5rem;
         font-weight: 600;
@@ -182,7 +189,7 @@ Product Create
         background: linear-gradient(90deg, transparent, #4361ee, transparent);
     }
     
-    
+    /* Image preview styling */
     .img_preview, .video_preview {
         transition: all 0.3s ease;
         border-radius: 8px;
@@ -200,7 +207,55 @@ Product Create
         object-fit: contain;
     }
     
+    /* Product image upload section */
+    .product-image-section {
+        background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 30px;
+        border-left: 2px solid #4361ee;
+        animation: fadeIn 0.6s ease-out;
+    }
     
+    .product-image-upload {
+        text-align: center;
+        padding: 10px; /* reduced */
+        border: 1px dashed #4361ee;
+        border-radius: 10px;
+        background: white;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .product-image-upload:hover {
+        border-color: #3a0ca3;
+        background: #f8f9ff;
+        transform: translateY(-3px);
+    }
+    
+    .product-image-preview {
+        max-width: 200px;   /* reduced size */
+        max-height: 150px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        display: none;
+        object-fit: contain;
+    }
+    
+    .product-image-preview.loaded {
+        display: block;
+        animation: fadeIn 0.6s ease-out, imagePulse 2s ease-in-out;
+    }
+    
+    .upload-icon {
+        font-size: 2rem; /* reduced */
+        color: #4361ee;
+        margin-bottom: 10px;
+    }
+    
+    /* Progress bar */
     .progress {
         height: 30px;
         border-radius: 10px;
@@ -220,7 +275,7 @@ Product Create
         animation: progressGlow 2s infinite;
     }
     
-    
+    /* Form sections */
     .media_div_row, .details_div_row, .about_div_row {
         padding: 20px;
         margin-bottom: 20px;
@@ -242,7 +297,7 @@ Product Create
     .media_div_row:nth-child(3) { animation-delay: 0.3s; }
     .media_div_row:nth-child(4) { animation-delay: 0.4s; }
     
-    
+    /* Bootstrap tagsinput customization */
     .bootstrap-tagsinput {
         width: 100%;
         border: 2px solid #e9ecef;
@@ -258,25 +313,29 @@ Product Create
         box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
     
-    
+    /* Success message */
     .success-message {
         display: none;
-        background: #4caf50;
+        background: linear-gradient(45deg, #4caf50, #2e7d32);
         color: white;
         padding: 15px;
         border-radius: 8px;
         text-align: center;
         margin-bottom: 20px;
         animation: fadeIn 0.5s;
+        box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
     }
     
-    
+    /* Textarea styling */
     textarea.form-control {
         min-height: 120px;
         resize: vertical;
     }
 </style>
 {% endblock custom_css %}
+
+<!-- rest of your code remains same -->
+
 
 {% block page_title %}
 Product Create
@@ -294,8 +353,25 @@ Product Create
                     <i class="fas fa-check-circle"></i> Product created successfully!
                 </div>
                 
-                <form id="myform">
+                <form id="myform" enctype="multipart/form-data">
                     {% csrf_token %}
+                    
+                    <!-- Product Image Upload Section -->
+                    <h5>Product Image</h5>
+                    <hr>
+                    
+                    <div class="product-image-section">
+                        <div class="product-image-upload" id="productImageUpload">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h5>Upload Product Image</h5>
+                            <p class="text-muted">Click to upload or drag and drop</p>
+                            <p class="text-muted small">PNG, JPG, GIF up to 10MB</p>
+                            <input type="file" name="product_image" id="productImageInput" accept="image/*" style="display: none;">
+                        </div>
+                        <img src="" class="product-image-preview" id="productImagePreview" alt="Product image preview">
+                    </div>
                     
                     <h5>Product Basic Details</h5>
                     <hr>
@@ -529,7 +605,7 @@ Product Create
 {% block custom_js %}
 <script src="//cdn.tiny.cloud/1/u6oa5pnpaa1vxho1md7uk4zmq2ai7xuf5o5wfgyrc131vpj6/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-    
+    // Initialize animations
     document.addEventListener('DOMContentLoaded', function() {
         const formGroups = document.querySelectorAll('.form-group');
         const sectionHeaders = document.querySelectorAll('h5');
@@ -546,9 +622,57 @@ Product Create
         rows.forEach((row, index) => {
             row.style.animationDelay = `${0.1 + (index * 0.1)}s`;
         });
+        
+        // Product image upload functionality
+        const productImageUpload = document.getElementById('productImageUpload');
+        const productImageInput = document.getElementById('productImageInput');
+        const productImagePreview = document.getElementById('productImagePreview');
+        
+        productImageUpload.addEventListener('click', function() {
+            productImageInput.click();
+        });
+        
+        productImageInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    productImagePreview.src = e.target.result;
+                    productImagePreview.classList.add('loaded');
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        
+        // Drag and drop functionality
+        productImageUpload.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#3a0ca3';
+            this.style.background = '#eef0ff';
+        });
+        
+        productImageUpload.addEventListener('dragleave', function() {
+            this.style.borderColor = '#4361ee';
+            this.style.background = 'white';
+        });
+        
+        productImageUpload.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#4361ee';
+            this.style.background = 'white';
+            
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                productImageInput.files = e.dataTransfer.files;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    productImagePreview.src = e.target.result;
+                    productImagePreview.classList.add('loaded');
+                }
+                reader.readAsDataURL(e.dataTransfer.files[0]);
+            }
+        });
     });
     
-    
+    // TinyMCE initialization
     tinymce.init({
         selector: "textarea#long_desc",
         height: 300,
@@ -592,7 +716,7 @@ Product Create
         },
     });
     
-   
+    // Add/Remove media functionality
     $(".add_media").click(function(){
         var media_row=$(".first_media").clone();
         media_row.removeClass("first_media");
@@ -601,10 +725,8 @@ Product Create
         media_row.find(".img_preview").attr("src","").css({"border":"none"}).css({"border-radius":"0px"}).hide();
         media_row.find(".video_preview").attr("src","").css({"border":"none"}).css({"border-radius":"0px"}).hide();
         
-        
         media_row.css({opacity: 0, transform: "translateY(20px)"});
         $(".media_div").append(media_row);
-        
         
         setTimeout(function() {
             media_row.css({
@@ -619,7 +741,6 @@ Product Create
         if($(".media_div").find(".media_div_row").length>1){
             var lastRow = $(".media_div").children().last();
             
-            
             lastRow.css({
                 opacity: 0,
                 transform: "translateY(20px)",
@@ -632,17 +753,15 @@ Product Create
         }
     });
     
-    
+    // Add/Remove details functionality
     $(".add_details").click(function(){
         var details_row=$(".first_details").clone();
         details_row.removeClass("first_details");
         details_row.find(".title_title").val("");
         details_row.find(".title_details").val("");
         
-        
         details_row.css({opacity: 0, transform: "translateY(20px)"});
         $(".details_div").append(details_row);
-        
         
         setTimeout(function() {
             details_row.css({
@@ -657,7 +776,6 @@ Product Create
         if($(".details_div").find(".details_div_row").length>1){
             var lastRow = $(".details_div").children().last();
             
-            
             lastRow.css({
                 opacity: 0,
                 transform: "translateY(20px)",
@@ -670,16 +788,14 @@ Product Create
         }
     });
     
-    
+    // Add/Remove about functionality
     $(".add_about").click(function(){
         var about_row=$(".first_about").clone();
         about_row.removeClass("first_about");
         about_row.find(".about_title").val("");
         
-        
         about_row.css({opacity: 0, transform: "translateY(20px)"});
         $(".about_div").append(about_row);
-        
         
         setTimeout(function() {
             about_row.css({
@@ -694,7 +810,6 @@ Product Create
         if($(".about_div").find(".about_div_row").length>1){
             var lastRow = $(".about_div").children().last();
             
-            
             lastRow.css({
                 opacity: 0,
                 transform: "translateY(20px)",
@@ -707,7 +822,7 @@ Product Create
         }
     });
     
-    
+    // Media preview functionality
     $(document).on("change",".select_media",function(){
         var media_type=$(this).parents(".media_div_row").find(".media_type").val();
         var img_preview=$(this).parents(".media_div_row").find(".img_preview");
@@ -738,11 +853,10 @@ Product Create
         }
     }
     
-   
+    // Form submission
     $(".submit_btn").click(function(){
         var form=new FormData($("#myform")[0]);
         form.append("long_desc",tinyMCE.activeEditor.getContent());
-        
         
         var xhr=new XMLHttpRequest();
         xhr.onreadystatechange=function(){
@@ -758,13 +872,10 @@ Product Create
         xhr.open("POST","{% url 'product_view' %}",true);
         $("#progressbar").show();
         
-        
         xhr.upload.addEventListener("progress",function(ev){
             if(ev.lengthComputable){
                 var percentage=(ev.loaded/ev.total*100|0);
                 $("#progressbar").css({"width":""+percentage+"%"}).text("Uploading: "+percentage+"%");
-                console.log(percentage);
-                
                 
                 if (percentage === 100) {
                     setTimeout(function() {

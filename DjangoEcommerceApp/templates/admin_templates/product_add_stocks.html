@@ -3,8 +3,43 @@
 PRODUCT STOCKS
 {% endblock title %}
 
-
 {% block custom_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+.card {
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.02);
+}
+.btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: auto;
+    padding: 0.375rem 1rem;
+    display: inline-block;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.form-control {
+    transition: all 0.3s ease;
+}
+.form-control:focus {
+    transform: scale(1.01);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+.card-header h4 {
+    transition: all 0.3s ease;
+}
+p {
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+p.show {
+    opacity: 1;
+}
+</style>
 {% endblock custom_css %}
 
 {% block page_title %}
@@ -12,48 +47,45 @@ PRODUCT STOCKS
 {% endblock page_title %}
 
 {% block page_content %}
-
 <div class="row">
     <div class="col-12 col-md-12 col-lg-12">
-        <div class="card">
+        <div class="card animate__animated animate__fadeIn">
             <div class="card-header">
-            <h4>PRODUCT STOCKS #{{ product.id }} : {{ product.product_name }}</h4>
-            
+                <h4 class="animate__animated animate__bounceIn">Product Stocks {{ product.id }} : {{ product.product_name }}</h4>
             </div>
             <div class="card-body">
-                                <form method="post">  
+                <form method="post">
                     {% csrf_token %}
-                <div class="row">
-                    <div class="col-lg-12">
-                    <p>CURRENT IN STOCK : {{ product.in_stock_total }}</p>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="show animate__animated animate__fadeInUp">Current in stock {{ product.in_stock_total }}</p>
+                        </div>
+                        <div class="col-lg-12">
+                            <input type="text" name="add_stocks" class="form-control animate__animated animate__fadeInUp" placeholder="Add Stocks"/>
+                        </div>
+                        <div class="col-lg-12">
+                            <br>
+                            <button type="submit" class="btn btn-primary animate__animated animate__pulse">Add Stock</button>
+                        </div>
                     </div>
-                    <div class="col-lg-12">
-                        <input type="text" name="add_stocks" class="form-control" placeholder="Add Stocks"/>
-                    </div>
-                       <div class="col-lg-12">
-                                                   <br>    
-
-                            <button type="submit" class="btn btn-primary btn-block">ADD STOCKS</button>
-                       </div> 
-                </div>
-                                    </form>      
-
+                </form>
             </div>
         </div>
     </div>
 </div>
 {% endblock page_content %}
 
-
 {% block custom_js %}
 <script>
-    $(".delete_product").click(function(){
-        var id=$(this).data("location");
-        console.log(id);
-        var cnf=confirm("Are You Sure You want to Delete?");
-        if(cnf){
-            location=id;
-        }
+$(document).ready(function() {
+    // Apply animation to stock info on load
+    $("p").each(function(index) {
+        $(this).delay(index * 100).queue(function(next) {
+            $(this).addClass("show animate__animated animate__fadeInUp");
+            setTimeout(() => $(this).removeClass("animate__animated animate__fadeInUp"), 1000);
+            next();
+        });
     });
+});
 </script>
 {% endblock custom_js %}
