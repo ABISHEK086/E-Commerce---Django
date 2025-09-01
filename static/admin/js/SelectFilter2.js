@@ -4,7 +4,7 @@
     window.SelectFilter = {
         init: function(field_id, field_name, is_stacked) {
             if (field_id.match(/__prefix__/)) {
-                // Don't initialize on empty forms.
+                
                 return;
             }
             const from_box = document.getElementById(field_id);
