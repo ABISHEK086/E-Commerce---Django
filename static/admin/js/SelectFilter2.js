@@ -19,9 +19,6 @@ Requires core.js and SelectBox.js.
                 if (p.classList.contains("info")) {
                     from_box.parentNode.removeChild(p);
                 } else if (p.classList.contains("help")) {
-                    // Move help text up to the top so it isn't below the select
-                    // boxes or wrapped off on the side to the right of the add
-                    // button:
                     from_box.parentNode.insertBefore(p, from_box.parentNode.firstChild);
                 }
             }
