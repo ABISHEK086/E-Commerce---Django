@@ -12,7 +12,7 @@ Requires core.js and SelectBox.js.
                 return;
             }
             const from_box = document.getElementById(field_id);
-            from_box.id += '_from'; // change its ID
+            from_box.id += '_from'; 
             from_box.className = 'filtered';
 
             for (const p of from_box.parentNode.getElementsByTagName('p')) {
