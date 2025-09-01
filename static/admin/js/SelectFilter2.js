@@ -170,7 +170,6 @@ Requires core.js and SelectBox.js.
         refresh_icons: function(field_id) {
             const from = document.getElementById(field_id + '_from');
             const to = document.getElementById(field_id + '_to');
-            // Active if at least one item is selected
             document.getElementById(field_id + '_add_link').classList.toggle('active', SelectFilter.any_selected(from));
             document.getElementById(field_id + '_remove_link').classList.toggle('active', SelectFilter.any_selected(to));
             // Active if the corresponding box isn't empty
