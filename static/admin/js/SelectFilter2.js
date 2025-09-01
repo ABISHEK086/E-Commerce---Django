@@ -142,7 +142,6 @@ Requires core.js and SelectBox.js.
             SelectBox.move(field_id + '_from', field_id + '_to');
 
             if (!is_stacked) {
-                // In horizontal mode, give the same height to the two boxes.
                 const j_from_box = document.getElementById(field_id + '_from');
                 const j_to_box = document.getElementById(field_id + '_to');
                 let height = filter_p.offsetHeight + j_from_box.offsetHeight;
