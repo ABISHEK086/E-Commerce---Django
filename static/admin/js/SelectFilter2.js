@@ -139,7 +139,6 @@ Requires core.js and SelectBox.js.
             });
             SelectBox.init(field_id + '_from');
             SelectBox.init(field_id + '_to');
-            // Move selected from_box options to to_box
             SelectBox.move(field_id + '_from', field_id + '_to');
 
             if (!is_stacked) {
