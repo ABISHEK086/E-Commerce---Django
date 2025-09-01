@@ -68,7 +68,6 @@ Requires core.js and SelectBox.js.
             const remove_link = quickElement('a', quickElement('li', selector_chooser), gettext('Remove'), 'title', gettext('Remove'), 'href', '#', 'id', field_id + '_remove_link');
             remove_link.className = 'selector-remove';
 
-            // <div class="selector-chosen">
             const selector_chosen = quickElement('div', selector_div);
             selector_chosen.className = 'selector-chosen';
             const title_chosen = quickElement('h2', selector_chosen, interpolate(gettext('Chosen %s') + ' ', [field_name]));
