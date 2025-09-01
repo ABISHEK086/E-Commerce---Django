@@ -26,7 +26,6 @@ Requires core.js and SelectBox.js.
             const selector_div = quickElement('div', from_box.parentNode);
             selector_div.className = is_stacked ? 'selector stacked' : 'selector';
 
-            // <div class="selector-available">
             const selector_available = quickElement('div', selector_div);
             selector_available.className = 'selector-available';
             const title_available = quickElement('h2', selector_available, interpolate(gettext('Available %s') + ' ', [field_name]));
