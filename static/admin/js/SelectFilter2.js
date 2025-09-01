@@ -158,7 +158,7 @@ Requires core.js and SelectBox.js.
                 j_to_box.style.height = height + 'px';
             }
 
-            // Initial icon refresh
+
             SelectFilter.refresh_icons(field_id);
         },
         any_selected: function(field) {
