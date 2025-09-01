@@ -201,7 +201,6 @@ Requires core.js and SelectBox.js.
             if ((event.which && event.which === 40) || (event.keyCode && event.keyCode === 40)) {
                 from.selectedIndex = (from.length === from.selectedIndex + 1) ? 0 : from.selectedIndex + 1;
             }
-            // up arrow -- wrap around
             if ((event.which && event.which === 38) || (event.keyCode && event.keyCode === 38)) {
                 from.selectedIndex = (from.selectedIndex === 0) ? from.length - 1 : from.selectedIndex - 1;
             }
