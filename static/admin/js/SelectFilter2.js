@@ -23,7 +23,6 @@ Requires core.js and SelectBox.js.
                 }
             }
 
-            // <div class="selector"> or <div class="selector stacked">
             const selector_div = quickElement('div', from_box.parentNode);
             selector_div.className = is_stacked ? 'selector stacked' : 'selector';
 
