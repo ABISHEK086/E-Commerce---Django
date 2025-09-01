@@ -31,7 +31,7 @@
                 for (const token of tokens) {
                     if (node_text.indexOf(token) === -1) {
                         node.displayed = 0;
-                        break; // Once the first token isn't found we're done
+                        break; 
                     }
                 }
             }
