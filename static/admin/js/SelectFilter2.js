@@ -172,7 +172,6 @@ Requires core.js and SelectBox.js.
             const to = document.getElementById(field_id + '_to');
             document.getElementById(field_id + '_add_link').classList.toggle('active', SelectFilter.any_selected(from));
             document.getElementById(field_id + '_remove_link').classList.toggle('active', SelectFilter.any_selected(to));
-            // Active if the corresponding box isn't empty
             document.getElementById(field_id + '_add_all_link').classList.toggle('active', from.querySelector('option'));
             document.getElementById(field_id + '_remove_all_link').classList.toggle('active', to.querySelector('option'));
         },
