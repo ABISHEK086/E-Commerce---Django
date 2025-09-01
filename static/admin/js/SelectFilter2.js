@@ -91,7 +91,6 @@ Requires core.js and SelectBox.js.
 
             from_box.name = from_box.name + '_old';
 
-            // Set up the JavaScript event handlers for the select box filter interface
             const move_selection = function(e, elem, move_func, from, to) {
                 if (elem.classList.contains('active')) {
                     move_func(from, to);
