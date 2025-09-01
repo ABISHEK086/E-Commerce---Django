@@ -59,7 +59,6 @@
             const choose_all = quickElement('a', selector_available, gettext('Choose all'), 'title', interpolate(gettext('Click to choose all %s at once.'), [field_name]), 'href', '#', 'id', field_id + '_add_all_link');
             choose_all.className = 'selector-chooseall';
 
-            // <ul class="selector-chooser">
             const selector_chooser = quickElement('ul', selector_div);
             selector_chooser.className = 'selector-chooser';
             const add_link = quickElement('a', quickElement('li', selector_chooser), gettext('Choose'), 'title', gettext('Choose'), 'href', '#', 'id', field_id + '_add_link');
