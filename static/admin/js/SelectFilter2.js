@@ -148,7 +148,7 @@ Requires core.js and SelectBox.js.
 
                 const j_to_box_style = window.getComputedStyle(j_to_box);
                 if (j_to_box_style.getPropertyValue('box-sizing') === 'border-box') {
-                    // Add the padding and border to the final height.
+                   
                     height += parseInt(j_to_box_style.getPropertyValue('padding-top'), 10)
                         + parseInt(j_to_box_style.getPropertyValue('padding-bottom'), 10)
                         + parseInt(j_to_box_style.getPropertyValue('border-top-width'), 10)
