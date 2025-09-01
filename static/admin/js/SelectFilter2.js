@@ -193,7 +193,6 @@ Requires core.js and SelectBox.js.
         },
         filter_key_down: function(event, field_id) {
             const from = document.getElementById(field_id + '_from');
-            // right arrow -- move across
             if ((event.which && event.which === 39) || (event.keyCode && event.keyCode === 39)) {
                 const old_index = from.selectedIndex;
                 SelectBox.move(field_id + '_from', field_id + '_to');
