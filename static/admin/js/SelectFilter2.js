@@ -1,28 +1,38 @@
+/*global SelectBox, gettext, interpolate, quickElement, SelectFilter*/
+/*
+SelectFilter2 - Turns a multiple-select box into a filter interface.
 
+Requires core.js and SelectBox.js.
+*/
 'use strict';
 {
     window.SelectFilter = {
         init: function(field_id, field_name, is_stacked) {
             if (field_id.match(/__prefix__/)) {
-                
+                // Don't initialize on empty forms.
                 return;
             }
             const from_box = document.getElementById(field_id);
-            from_box.id += '_from'; 
+            from_box.id += '_from'; // change its ID
             from_box.className = 'filtered';
 
             for (const p of from_box.parentNode.getElementsByTagName('p')) {
                 if (p.classList.contains("info")) {
+                    // Remove <p class="info">, because it just gets in the way.
                     from_box.parentNode.removeChild(p);
                 } else if (p.classList.contains("help")) {
+                    // Move help text up to the top so it isn't below the select
+                    // boxes or wrapped off on the side to the right of the add
+                    // button:
                     from_box.parentNode.insertBefore(p, from_box.parentNode.firstChild);
                 }
             }
 
+            // <div class="selector"> or <div class="selector stacked">
             const selector_div = quickElement('div', from_box.parentNode);
             selector_div.className = is_stacked ? 'selector stacked' : 'selector';
 
-         
+            // <div class="selector-available">
             const selector_available = quickElement('div', selector_div);
             selector_available.className = 'selector-available';
             const title_available = quickElement('h2', selector_available, interpolate(gettext('Available %s') + ' ', [field_name]));
@@ -59,6 +69,7 @@
             const choose_all = quickElement('a', selector_available, gettext('Choose all'), 'title', interpolate(gettext('Click to choose all %s at once.'), [field_name]), 'href', '#', 'id', field_id + '_add_all_link');
             choose_all.className = 'selector-chooseall';
 
+            // <ul class="selector-chooser">
             const selector_chooser = quickElement('ul', selector_div);
             selector_chooser.className = 'selector-chooser';
             const add_link = quickElement('a', quickElement('li', selector_chooser), gettext('Choose'), 'title', gettext('Choose'), 'href', '#', 'id', field_id + '_add_link');
@@ -66,7 +77,7 @@
             const remove_link = quickElement('a', quickElement('li', selector_chooser), gettext('Remove'), 'title', gettext('Remove'), 'href', '#', 'id', field_id + '_remove_link');
             remove_link.className = 'selector-remove';
 
-     
+            // <div class="selector-chosen">
             const selector_chosen = quickElement('div', selector_div);
             selector_chosen.className = 'selector-chosen';
             const title_chosen = quickElement('h2', selector_chosen, interpolate(gettext('Chosen %s') + ' ', [field_name]));
