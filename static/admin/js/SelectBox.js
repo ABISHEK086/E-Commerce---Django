@@ -11,7 +11,7 @@
             }
         },
         redisplay: function(id) {
-            // Repopulate HTML select box from cache
+            
             const box = document.getElementById(id);
             box.innerHTML = '';
             for (const node of SelectBox.cache[id]) {
