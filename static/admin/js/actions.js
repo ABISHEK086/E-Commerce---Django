@@ -42,7 +42,7 @@
             },
             updateCounter = function() {
                 const sel = $(actionCheckboxes).filter(":checked").length;
-                // data-actions-icnt is defined in the generated HTML
+               
                 // and contains the total amount of objects in the queryset
                 const actions_icnt = $('.action-counter').data('actionsIcnt');
                 $(options.counterContainer).html(interpolate(
