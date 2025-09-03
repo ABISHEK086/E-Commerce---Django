@@ -1,4 +1,4 @@
-/*global gettext, pgettext, get_format, quickElement, removeChildren*/
+
 'use strict';
 {
     // CalendarNamespace -- Provides a collection of HTML calendar-related helper functions
