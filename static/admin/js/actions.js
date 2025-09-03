@@ -130,7 +130,6 @@
             }
         });
     };
-    /* Setup plugin defaults */
     $.fn.actions.defaults = {
         actionContainer: "div.actions",
         counterContainer: "span.action-counter",
