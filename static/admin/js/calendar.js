@@ -88,7 +88,7 @@
                 return onClick;
             }
 
-            // Draw days of month
+
             let currentDay = 1;
             for (let i = startingPos; currentDay <= days; i++) {
                 if (i % 7 === 0 && currentDay !== 1) {
@@ -100,7 +100,6 @@
                     todayClass = '';
                 }
 
-                // use UTC function; see above for explanation.
                 if (isSelectedMonth && currentDay === selected.getUTCDate()) {
                     if (todayClass !== '') {
                         todayClass += " ";
@@ -114,7 +113,6 @@
                 currentDay++;
             }
 
-            // Draw blanks after end of month (optional, but makes for valid code)
             while (tableRow.childNodes.length < 7) {
                 nonDayCell = quickElement('td', tableRow, ' ');
                 nonDayCell.className = "nonday";
@@ -124,13 +122,7 @@
         }
     };
 
-    // Calendar -- A calendar instance
     function Calendar(div_id, callback, selected) {
-        // div_id (string) is the ID of the element in which the calendar will
-        //     be displayed
-        // callback (string) is the name of a JavaScript function that will be
-        //     called with the parameters (year, month, day) when a day in the
-        //     calendar is clicked
         this.div_id = div_id;
         this.callback = callback;
         this.today = new Date();
