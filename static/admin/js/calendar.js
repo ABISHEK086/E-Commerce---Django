@@ -64,7 +64,6 @@
             quickElement('caption', calTable, CalendarNamespace.monthsOfYear[month - 1] + ' ' + year);
             const tableBody = quickElement('tbody', calTable);
 
-            // Draw days-of-week header
             let tableRow = quickElement('tr', tableBody);
             for (let i = 0; i < 7; i++) {
                 quickElement('th', tableRow, CalendarNamespace.daysOfWeek[(i + CalendarNamespace.firstDayOfWeek) % 7]);
