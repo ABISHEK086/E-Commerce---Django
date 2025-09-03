@@ -61,7 +61,6 @@
                 });
             };
         $(options.counterContainer).show();
-        // Check state of checkboxes and reinit state if needed
         $(this).filter(":checked").each(function(i) {
             $(this).parent().parent().toggleClass(options.selectedClass);
             updateCounter();
