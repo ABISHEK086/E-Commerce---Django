@@ -42,8 +42,6 @@
             },
             updateCounter = function() {
                 const sel = $(actionCheckboxes).filter(":checked").length;
-               
-            
                 const actions_icnt = $('.action-counter').data('actionsIcnt');
                 $(options.counterContainer).html(interpolate(
                     ngettext('%(sel)s of %(cnt)s selected', '%(sel)s of %(cnt)s selected', sel), {
