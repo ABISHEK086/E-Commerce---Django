@@ -60,7 +60,6 @@
                     return value;
                 });
             };
-        // Show counter by default
         $(options.counterContainer).show();
         // Check state of checkboxes and reinit state if needed
         $(this).filter(":checked").each(function(i) {
