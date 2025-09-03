@@ -45,7 +45,7 @@
             }
             return days;
         },
-        draw: function(month, year, div_id, callback, selected) { // month = 1-12, year = 1-9999
+        draw: function(month, year, div_id, callback, selected) {
             const today = new Date();
             const todayDay = today.getDate();
             const todayMonth = today.getMonth() + 1;
