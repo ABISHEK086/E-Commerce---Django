@@ -74,7 +74,6 @@
 
             let nonDayCell;
 
-            // Draw blanks before first of month
             tableRow = quickElement('tr', tableBody);
             for (let i = 0; i < startingPos; i++) {
                 nonDayCell = quickElement('td', tableRow, ' ');
