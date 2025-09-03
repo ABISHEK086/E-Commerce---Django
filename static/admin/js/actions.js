@@ -1,4 +1,4 @@
-/*global gettext, interpolate, ngettext*/
+
 'use strict';
 {
     const $ = django.jQuery;
