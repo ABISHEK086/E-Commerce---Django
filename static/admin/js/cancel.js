@@ -1,6 +1,5 @@
 'use strict';
 {
-    // loaded, call the function now.
     // http://youmightnotneedjquery.com/#ready
     function ready(fn) {
         if (document.readyState !== 'loading') {
