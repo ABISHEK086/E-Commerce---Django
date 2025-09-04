@@ -16,7 +16,7 @@
                 h2.appendChild(document.createTextNode(')'));
             }
         }
-        // Add toggle to hide/show anchor tag
+
         const toggleFunc = function(ev) {
             if (ev.target.matches('.collapse-toggle')) {
                 ev.preventDefault();
