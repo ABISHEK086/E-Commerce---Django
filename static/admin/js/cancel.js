@@ -12,7 +12,7 @@
         function handleClick(event) {
             event.preventDefault();
             if (window.location.search.indexOf('&_popup=1') === -1) {
-                window.history.back(); // Go back if not a popup.
+                window.history.back(); 
             } else {
                 window.close(); // Otherwise, close the popup.
             }
