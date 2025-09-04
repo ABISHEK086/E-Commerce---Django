@@ -23,7 +23,7 @@
                 ev.stopPropagation();
                 const fieldset = ev.target.closest('fieldset');
                 if (fieldset.classList.contains('collapsed')) {
-                    // Show
+             
                     ev.target.textContent = gettext('Hide');
                     fieldset.classList.remove('collapsed');
                 } else {
