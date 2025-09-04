@@ -27,7 +27,7 @@
                     ev.target.textContent = gettext('Hide');
                     fieldset.classList.remove('collapsed');
                 } else {
-                    // Hide
+               
                     ev.target.textContent = gettext('Show');
                     fieldset.classList.add('collapsed');
                 }
