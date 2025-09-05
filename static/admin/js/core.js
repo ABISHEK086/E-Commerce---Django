@@ -115,7 +115,6 @@ function findPosY(obj) {
         return result;
     };
 
-    // ----------------------------------------------------------------------------
     String.prototype.strptime = function(format) {
         const split_format = format.split(/[.\-/]/);
         const date = this.split(/[.\-/]/);
