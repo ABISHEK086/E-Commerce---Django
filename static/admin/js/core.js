@@ -115,7 +115,6 @@ function findPosY(obj) {
         return result;
     };
 
-    // ----------------------------------------------------------------------------
     // String object extensions
     // ----------------------------------------------------------------------------
     String.prototype.strptime = function(format) {
