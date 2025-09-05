@@ -48,7 +48,6 @@ function findPosY(obj) {
     return curtop;
 }
 
-// Date object extensions
 // ----------------------------------------------------------------------------
 {
     Date.prototype.getTwelveHours = function() {
