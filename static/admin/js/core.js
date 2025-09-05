@@ -22,8 +22,6 @@ function removeChildren(a) {
     }
 }
 
-
-// ----------------------------------------------------------------------------
 function findPosX(obj) {
     let curleft = 0;
     if (obj.offsetParent) {
