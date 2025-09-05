@@ -15,7 +15,7 @@ function quickElement() {
     return obj;
 }
 
-// "a" is reference to an object
+
 function removeChildren(a) {
     while (a.hasChildNodes()) {
         a.removeChild(a.lastChild);
