@@ -132,9 +132,7 @@ function findPosY(obj) {
                 year = date[i];
                 break;
             case "%y":
-                // A %y value in the range of [00, 68] is in the current
-                // century, while [69, 99] is in the previous century,
-                // according to the Open Group Specification.
+
                 if (parseInt(date[i], 10) >= 69) {
                     year = date[i];
                 } else {
