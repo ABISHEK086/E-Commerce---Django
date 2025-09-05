@@ -142,7 +142,6 @@ function findPosY(obj) {
             }
             ++i;
         }
-        // Create Date object from UTC since the parsed value is supposed to be
 
         return new Date(Date.UTC(year, month, day));
     };
