@@ -23,7 +23,6 @@ function removeChildren(a) {
 }
 
 
-// Find-position functions by PPK
 // See https://www.quirksmode.org/js/findpos.html
 // ----------------------------------------------------------------------------
 function findPosX(obj) {
