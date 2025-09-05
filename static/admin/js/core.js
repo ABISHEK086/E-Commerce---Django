@@ -23,7 +23,6 @@ function removeChildren(a) {
 }
 
 
-// See https://www.quirksmode.org/js/findpos.html
 // ----------------------------------------------------------------------------
 function findPosX(obj) {
     let curleft = 0;
