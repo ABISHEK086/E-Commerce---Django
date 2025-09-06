@@ -94,7 +94,6 @@
                 addButton.parent().show();
             }
             toggleDeleteButtonVisibility(inlineGroup);
-            // they remain in sequence:
             let i, formCount;
             const updateElementCallback = function() {
                 updateElementIndex(this, options.prefix, i);
