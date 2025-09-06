@@ -64,7 +64,6 @@
         };
         const addInlineDeleteButton = function(row) {
             if (row.is("tr")) {
-                // If the forms are laid out in table rows, insert
                 // the remove button into the last table cell:
                 row.children(":last").append('<div><a class="' + options.deleteCssClass + '" href="#">' + options.deleteText + "</a></div>");
             } else if (row.is("ul") || row.is("ol")) {
