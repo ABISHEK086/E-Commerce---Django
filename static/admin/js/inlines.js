@@ -68,7 +68,6 @@
             } else if (row.is("ul") || row.is("ol")) {
                 row.append('<li><a class="' + options.deleteCssClass + '" href="#">' + options.deleteText + "</a></li>");
             } else {
-                // Otherwise, just insert the remove button as the
                 // last child element of the form's container:
                 row.children(":first").append('<span><a class="' + options.deleteCssClass + '" href="#">' + options.deleteText + "</a></span>");
             }
