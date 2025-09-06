@@ -66,7 +66,6 @@
             if (row.is("tr")) {
                 row.children(":last").append('<div><a class="' + options.deleteCssClass + '" href="#">' + options.deleteText + "</a></div>");
             } else if (row.is("ul") || row.is("ol")) {
-                // If they're laid out as an ordered/unordered list,
                 // insert an <li> after the last list item:
                 row.append('<li><a class="' + options.deleteCssClass + '" href="#">' + options.deleteText + "</a></li>");
             } else {
