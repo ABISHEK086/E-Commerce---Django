@@ -144,13 +144,10 @@
         addButton: null
     };
 
-
-    // Tabular inlines ---------------------------------------------------------
     $.fn.tabularFormset = function(selector, options) {
         const $rows = $(this);
 
         const reinitDateTimeShortCuts = function() {
-            // Reinitialize the calendar and clock widgets by force
             if (typeof DateTimeShortcuts !== "undefined") {
                 $(".datetimeshortcuts").remove();
                 DateTimeShortcuts.init();
@@ -158,8 +155,6 @@
         };
 
         const updateSelectFilter = function() {
-            // If any SelectFilter widgets are a part of the new form,
-            // instantiate a new SelectFilter instance for it.
             if (typeof SelectFilter !== 'undefined') {
                 $('.selectfilter').each(function(index, value) {
                     const namearr = value.name.split('-');
@@ -205,7 +200,6 @@
         return $rows;
     };
 
-    // Stacked inlines ---------------------------------------------------------
     $.fn.stackedFormset = function(selector, options) {
         const $rows = $(this);
         const updateInlineLabel = function(row) {
@@ -216,7 +210,6 @@
         };
 
         const reinitDateTimeShortCuts = function() {
-            // Reinitialize the calendar and clock widgets by force, yuck.
             if (typeof DateTimeShortcuts !== "undefined") {
                 $(".datetimeshortcuts").remove();
                 DateTimeShortcuts.init();
@@ -224,7 +217,6 @@
         };
 
         const updateSelectFilter = function() {
-            // If any SelectFilter widgets were added, instantiate a new instance.
             if (typeof SelectFilter !== "undefined") {
                 $(".selectfilter").each(function(index, value) {
                     const namearr = value.name.split('-');
