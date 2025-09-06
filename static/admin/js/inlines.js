@@ -64,7 +64,6 @@
         };
         const addInlineDeleteButton = function(row) {
             if (row.is("tr")) {
-                // the remove button into the last table cell:
                 row.children(":last").append('<div><a class="' + options.deleteCssClass + '" href="#">' + options.deleteText + "</a></div>");
             } else if (row.is("ul") || row.is("ol")) {
                 // If they're laid out as an ordered/unordered list,
