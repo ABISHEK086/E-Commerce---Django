@@ -94,7 +94,6 @@
                 addButton.parent().show();
             }
             toggleDeleteButtonVisibility(inlineGroup);
-            // Also, update names and ids for all remaining form controls so
             // they remain in sequence:
             let i, formCount;
             const updateElementCallback = function() {
