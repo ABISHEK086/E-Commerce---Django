@@ -56,7 +56,6 @@
             if ((maxForms.val() !== '') && (maxForms.val() - totalForms.val()) <= 0) {
                 addButton.parent().hide();
             }
-            // Show the remove buttons if there are more than min_num.
             toggleDeleteButtonVisibility(row.closest('.inline-group'));
 
             // Pass the new form to the post-add callback, if provided.
