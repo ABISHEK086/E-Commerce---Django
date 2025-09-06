@@ -88,7 +88,6 @@
                 options.removed(row);
             }
             $(document).trigger('formset:removed', [row, options.prefix]);
-            // Update the TOTAL_FORMS form count.
             const forms = $("." + options.formCssClass);
             $("#id_" + options.prefix + "-TOTAL_FORMS").val(forms.length);
             // Show add button again once below maximum number.
