@@ -51,7 +51,6 @@
                 updateElementIndex(this, options.prefix, totalForms.val());
             });
             row.insertBefore($(template));
-            // Update number of total forms.
             $(totalForms).val(parseInt(totalForms.val(), 10) + 1);
             nextIndex += 1;
             // Hide the add button if there's a limit and it's been reached.
