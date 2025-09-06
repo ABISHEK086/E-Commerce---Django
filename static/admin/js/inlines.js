@@ -25,9 +25,6 @@
         const minForms = $("#id_" + options.prefix + "-MIN_NUM_FORMS").prop("autocomplete", "off");
         let addButton;
 
-        /**
-         * The "Add another MyModel" button below the inline forms.
-         */
         const addInlineAddButton = function() {
             if (addButton === null) {
                 if ($this.prop("tagName") === "TR") {
