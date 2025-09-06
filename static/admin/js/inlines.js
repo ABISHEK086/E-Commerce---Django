@@ -53,7 +53,6 @@
             row.insertBefore($(template));
             $(totalForms).val(parseInt(totalForms.val(), 10) + 1);
             nextIndex += 1;
-            // Hide the add button if there's a limit and it's been reached.
             if ((maxForms.val() !== '') && (maxForms.val() - totalForms.val()) <= 0) {
                 addButton.parent().hide();
             }
