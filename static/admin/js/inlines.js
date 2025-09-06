@@ -57,8 +57,6 @@
                 addButton.parent().hide();
             }
             toggleDeleteButtonVisibility(row.closest('.inline-group'));
-
-            // Pass the new form to the post-add callback, if provided.
             if (options.added) {
                 options.added(row);
             }
