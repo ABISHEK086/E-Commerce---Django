@@ -119,8 +119,6 @@
             addInlineDeleteButton($(this));
         });
         toggleDeleteButtonVisibility($this);
-
-        // Create the add button, initially hidden.
         addButton = options.addButton;
         addInlineAddButton();
 
