@@ -32,7 +32,6 @@
                     $parent.append('<tr class="' + options.addCssClass + '"><td colspan="' + numCols + '"><a href="#">' + options.addText + "</a></tr>");
                     addButton = $parent.find("tr:last a");
                 } else {
-                    // Otherwise, insert it immediately after the last form:
                     $this.filter(":last").after('<div class="' + options.addCssClass + '"><a href="#">' + options.addText + "</a></div>");
                     addButton = $this.filter(":last").next().find("a");
                 }
