@@ -121,8 +121,6 @@
         toggleDeleteButtonVisibility($this);
         addButton = options.addButton;
         addInlineAddButton();
-
-        // Note that max_num = None translates to a blank string.
         const showAddButton = maxForms.val() === '' || (maxForms.val() - totalForms.val()) > 0;
         if ($this.length && showAddButton) {
             addButton.parent().show();
