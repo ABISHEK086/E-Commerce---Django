@@ -131,18 +131,17 @@
         return this;
     };
 
-    /* Setup plugin defaults */
     $.fn.formset.defaults = {
-        prefix: "form", // The form prefix for your django formset
-        addText: "add another", // Text for the add link
-        deleteText: "remove", // Text for the delete link
-        addCssClass: "add-row", // CSS class applied to the add link
-        deleteCssClass: "delete-row", // CSS class applied to the delete link
-        emptyCssClass: "empty-row", // CSS class applied to the empty row
-        formCssClass: "dynamic-form", // CSS class applied to each form in a formset
-        added: null, // Function called each time a new form is added
-        removed: null, // Function called each time a form is deleted
-        addButton: null // Existing add button to use
+        prefix: "form", 
+        addText: "add another", 
+        deleteText: "remove", 
+        addCssClass: "add-row",
+        deleteCssClass: "delete-row", 
+        emptyCssClass: "empty-row",
+        formCssClass: "dynamic-form", 
+        added: null,
+        removed: null, 
+        addButton: null
     };
 
 
