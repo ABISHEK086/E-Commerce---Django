@@ -90,7 +90,6 @@
             $(document).trigger('formset:removed', [row, options.prefix]);
             const forms = $("." + options.formCssClass);
             $("#id_" + options.prefix + "-TOTAL_FORMS").val(forms.length);
-            // Show add button again once below maximum number.
             if ((maxForms.val() === '') || (maxForms.val() - forms.length) > 0) {
                 addButton.parent().show();
             }
