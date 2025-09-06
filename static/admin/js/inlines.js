@@ -28,7 +28,6 @@
         const addInlineAddButton = function() {
             if (addButton === null) {
                 if ($this.prop("tagName") === "TR") {
-                    // "add" button in a new table row:
                     const numCols = $this.eq(-1).children().length;
                     $parent.append('<tr class="' + options.addCssClass + '"><td colspan="' + numCols + '"><a href="#">' + options.addText + "</a></tr>");
                     addButton = $parent.find("tr:last a");
