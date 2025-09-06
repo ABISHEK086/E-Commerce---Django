@@ -78,7 +78,6 @@
             const deleteButton = $(e1.target);
             const row = deleteButton.closest('.' + options.formCssClass);
             const inlineGroup = row.closest('.inline-group');
-            // Remove the parent form containing this button,
             // and also remove the relevant row with non-field errors:
             const prevRow = row.prev();
             if (prevRow.length && prevRow.hasClass('row-form-errors')) {
