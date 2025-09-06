@@ -62,11 +62,6 @@
             }
             $(document).trigger('formset:added', [row, options.prefix]);
         };
-
-        /**
-         * The "X" button that is part of every unsaved inline.
-         * (When saved, it is replaced with a "Delete" checkbox.)
-         */
         const addInlineDeleteButton = function(row) {
             if (row.is("tr")) {
                 // If the forms are laid out in table rows, insert
