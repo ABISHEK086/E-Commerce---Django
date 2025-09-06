@@ -115,8 +115,6 @@
         $this.each(function(i) {
             $(this).not("." + options.emptyCssClass).addClass(options.formCssClass);
         });
-
-        // Create the delete buttons for all unsaved inlines:
         $this.filter('.' + options.formCssClass + ':not(.has_original):not(.' + options.emptyCssClass + ')').each(function() {
             addInlineDeleteButton($(this));
         });
