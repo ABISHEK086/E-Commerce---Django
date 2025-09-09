@@ -165,7 +165,7 @@
 
         if (allowUnicode) {
 
-            // characters, whitespace, and dash; remove other characters.
+
             s = XRegExp.replace(s, XRegExp('[^-_\\p{L}\\p{N}\\s]', 'g'), '');
         } else {
             s = s.replace(/[^-\w\s]/g, ''); // remove unneeded chars
