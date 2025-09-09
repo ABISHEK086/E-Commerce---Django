@@ -164,8 +164,6 @@
         s = s.toLowerCase(); 
 
         if (allowUnicode) {
-
-
             s = XRegExp.replace(s, XRegExp('[^-_\\p{L}\\p{N}\\s]', 'g'), '');
         } else {
             s = s.replace(/[^-\w\s]/g, ''); // remove unneeded chars
