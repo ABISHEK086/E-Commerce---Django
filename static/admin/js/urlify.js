@@ -171,7 +171,7 @@
         s = s.replace(/^\s+|\s+$/g, ''); 
         s = s.replace(/[-\s]+/g, '-');
         s = s.substring(0, num_chars); 
-        s = s.replace(/-+$/g, ''); // trim any trailing hyphens
+        s = s.replace(/-+$/g, ''); 
         return s;
     }
     window.URLify = URLify;
