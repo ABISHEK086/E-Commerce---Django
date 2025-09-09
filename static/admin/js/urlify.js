@@ -126,7 +126,7 @@
 
     const Downcoder = {
         'Initialize': function() {
-            if (Downcoder.map) { // already made
+            if (Downcoder.map) { 
                 return;
             }
             Downcoder.map = {};
