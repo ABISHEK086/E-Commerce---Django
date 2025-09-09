@@ -161,7 +161,7 @@
             const r = new RegExp('\\b(' + removeList.join('|') + ')\\b', 'gi');
             s = s.replace(r, '');
         }
-        s = s.toLowerCase(); // convert to lowercase
+        s = s.toLowerCase(); 
 
         if (allowUnicode) {
             // Keep Unicode letters including both lowercase and uppercase
