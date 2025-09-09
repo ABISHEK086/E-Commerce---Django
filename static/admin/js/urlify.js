@@ -170,7 +170,7 @@
         }
         s = s.replace(/^\s+|\s+$/g, ''); 
         s = s.replace(/[-\s]+/g, '-');
-        s = s.substring(0, num_chars); // trim to first num_chars chars
+        s = s.substring(0, num_chars); 
         s = s.replace(/-+$/g, ''); // trim any trailing hyphens
         return s;
     }
