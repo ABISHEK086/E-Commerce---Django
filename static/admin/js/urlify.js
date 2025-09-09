@@ -151,8 +151,6 @@
             s = downcode(s);
         }
         const hasUnicodeChars = /[^\u0000-\u007f]/.test(s);
-        // Remove English words only if the string contains ASCII (English)
-        // characters.
         if (!hasUnicodeChars) {
             const removeList = [
                 "a", "an", "as", "at", "before", "but", "by", "for", "from",
