@@ -1,4 +1,4 @@
-/*global XRegExp*/
+
 'use strict';
 {
     const LATIN_MAP = {
