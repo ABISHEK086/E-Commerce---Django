@@ -6,7 +6,6 @@
             const prepopulatedField = $(this);
 
             const populate = function() {
-                // Bail if the field's value has been changed by the user
                 if (prepopulatedField.data('_changed')) {
                     return;
                 }
