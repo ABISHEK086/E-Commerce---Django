@@ -164,7 +164,7 @@
         s = s.toLowerCase(); 
 
         if (allowUnicode) {
-            // Keep Unicode letters including both lowercase and uppercase
+
             // characters, whitespace, and dash; remove other characters.
             s = XRegExp.replace(s, XRegExp('[^-_\\p{L}\\p{N}\\s]', 'g'), '');
         } else {
