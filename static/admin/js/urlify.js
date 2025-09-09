@@ -169,7 +169,7 @@
             s = s.replace(/[^-\w\s]/g, ''); 
         }
         s = s.replace(/^\s+|\s+$/g, ''); 
-        s = s.replace(/[-\s]+/g, '-'); // convert spaces to hyphens
+        s = s.replace(/[-\s]+/g, '-');
         s = s.substring(0, num_chars); // trim to first num_chars chars
         s = s.replace(/-+$/g, ''); // trim any trailing hyphens
         return s;
