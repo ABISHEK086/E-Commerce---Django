@@ -9,7 +9,6 @@
                 if (prepopulatedField.data('_changed')) {
                     return;
                 }
-
                 const values = [];
                 $.each(dependencies, function(i, field) {
                     field = $(field);
