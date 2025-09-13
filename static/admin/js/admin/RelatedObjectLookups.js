@@ -88,8 +88,6 @@
             }
         });
         selects.next().find('.select2-selection__rendered').each(function() {
-
-
             this.lastChild.textContent = newRepr;
             this.title = newRepr;
         });
