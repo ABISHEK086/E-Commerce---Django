@@ -67,7 +67,6 @@
                     elem.value = newId;
                 }
             }
-            // Trigger a change event to update related links if required.
             $(elem).trigger('change');
         } else {
             const toId = name + "_to";
