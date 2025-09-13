@@ -89,7 +89,7 @@
         });
         selects.next().find('.select2-selection__rendered').each(function() {
 
-            // Use the lastChild to modify only the displayed value.
+
             this.lastChild.textContent = newRepr;
             this.title = newRepr;
         });
