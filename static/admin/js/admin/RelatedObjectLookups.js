@@ -1,5 +1,5 @@
 
-// Handles related-objects functionality: lookup link for raw_id_fields
+
 // and Add Another links.
 'use strict';
 {
