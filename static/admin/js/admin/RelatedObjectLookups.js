@@ -1,6 +1,6 @@
 
 
-// and Add Another links.
+
 'use strict';
 {
     const $ = django.jQuery;
