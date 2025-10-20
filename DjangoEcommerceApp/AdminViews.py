@@ -1,4 +1,4 @@
-from django.shortcuts import render                       
+from django.shortcuts import render                        
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,CreateView,UpdateView,DetailView,View
 from DjangoEcommerceApp.models import Categories,SubCategories,CustomUser,MerchantUser,Products,ProductAbout,ProductDetails,ProductMedia,ProductTransaction,ProductTags,StaffUser,CustomerUser
