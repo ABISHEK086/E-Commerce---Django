@@ -1,4 +1,4 @@
-"use strict";    
+"use strict";     
        
 // ChartJS     
 if(window.Chart) {
