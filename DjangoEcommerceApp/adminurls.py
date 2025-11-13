@@ -2,7 +2,7 @@ from django.urls import path
 from DjangoEcommerceApp import AdminViews  
 from DjangoEcommerceApp import views                
        
-urlpatterns = [  
+urlpatterns = [   
     path('', AdminViews.admin_home, name='admin_home'),
     path('admin/', views.adminLogin, name="admin_login"),
     path('demo/', views.demoPage, name="demo"),
