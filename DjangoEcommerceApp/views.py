@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json       
          
   
-def demoPage(request):    
+def demoPage(request):     
     return HttpResponse("demo Page")    
    
 def demoPageTemplate(request): 
