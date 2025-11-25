@@ -1,6 +1,6 @@
 from django.shortcuts import render     
 from django.http import HttpResponse,HttpResponseRedirect, JsonResponse 
-from django.contrib.auth import authenticate,l ogin,logout, update_session_auth_hash 
+from django.contrib.auth import authenticate,login,logout, update_session_auth_hash 
 from django.contrib import message
 from django.urls import reverse   
 from django.views.decorators.csrf import csrf_exempt  
