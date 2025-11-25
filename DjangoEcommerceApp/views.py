@@ -8,7 +8,7 @@ import json
      
 
 def demoPage(request):  
-    return HttpResponse("demo Page") 
+    return HttpResponse("demo Page")  
  
 def demoPageTemplate(request): 
     return render(request,"demo.html")
