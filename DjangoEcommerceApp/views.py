@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate,login,logout, update_session_auth_h
 from django.contrib import message
 from django.urls import reverse   
 from django.views.decorators.csrf import csrf_exempt  
-import json       
+import json        
             
   
 def demoPage(request):     
