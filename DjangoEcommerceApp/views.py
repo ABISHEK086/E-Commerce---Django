@@ -5,7 +5,7 @@ from django.contrib import message
 from django.urls import reverse   
 from django.views.decorators.csrf import csrf_exempt  
 import json        
-             
+              
       
 def demoPage(request):        
     return HttpResponse("demo Page")        
