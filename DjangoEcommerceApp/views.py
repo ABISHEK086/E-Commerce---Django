@@ -57,7 +57,7 @@ def save_system_settings(request):
 
 @csrf_exempt
 def update_features(request):
-    if request.method == 'POST':
+    if request.method == 'POST': 
         try:
             return JsonResponse({'success': True, 'message': 'Feature settings updated successfully!'})
         except Exception as e:
@@ -98,9 +98,6 @@ def update_password(request):
 def save_security_settings(request):
     if request.method == 'POST':
         try:
-            # Process security settings here
-            # two_factor_auth = request.POST.get('two_factor_auth')
-            # session_timeout = request.POST.get('session_timeout')
             return JsonResponse({'success': True, 'message': 'Security settings saved successfully!'})
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)})
