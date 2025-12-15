@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)  
 
 
-class AdminUser(models.Model):
+class AdminUser(models.Model): 
     profile_pic=models.FileField(default="")
     auth_user_id=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
