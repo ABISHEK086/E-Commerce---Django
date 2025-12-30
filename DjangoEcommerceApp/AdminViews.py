@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
  
 @login_required(login_url="/admin/")
 def admin_home(request):
-    return render(request, "home.html")
+    return render(request, "home.html") 
 @login_required(login_url="/admin/")
 def features_settings(request):
     return render(request, "admin_templates/features-settings.html")
