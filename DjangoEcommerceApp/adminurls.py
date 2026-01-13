@@ -6,7 +6,7 @@ urlpatterns = [
     path('', AdminViews.admin_home, name='admin_home'),           
     path('admin/', views.adminLogin, name="admin_login"),   
     path('demo/', views.demoPage, name="demo"),  
-    path('demoPage/', views.demoPageTemplate, name="demoPage"),
+    path('demoPage/', views.demoPageTemplate, name="demoPage"), 
     path('admin_login_process/', views.adminLoginProcess, name="admin_login_process"),
     path('admin_logout_process/', views.adminLogoutProcess, name="admin_logout_process"),
 
