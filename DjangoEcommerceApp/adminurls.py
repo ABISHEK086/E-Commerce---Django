@@ -1,5 +1,5 @@
 from django.urls import path   
-from DjangoEcommerceApp import AdminViews   
+from DjangoEcommerceApp import AdminViews    
 from DjangoEcommerceApp import views                         
                          
 urlpatterns = [            
