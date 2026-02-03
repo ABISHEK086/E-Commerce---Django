@@ -5,7 +5,7 @@ from DjangoEcommerceApp.models import Categories,SubCategories,CustomUser,Mercha
 from django.contrib.messages.views import SuccessMessageMixin 
 from django.core.files.storage import FileSystemStorage   
 from django.contrib.messages.views import messages        
-from django.urls import reverse               
+from django.urls import reverse                
 from django.http import HttpResponseRedirect,HttpResponse                 
 from django.db.models import Q             
 from DjangoEcommerce.settings import BASE_URL                 
