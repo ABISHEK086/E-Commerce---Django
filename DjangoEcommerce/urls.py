@@ -8,7 +8,7 @@ from DjangoEcommerceApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('admindashboard/', include('DjangoEcommerceApp.adminurls')),
+    path('admindashboard/', include('DjangoEcommerceApp.adminurls')), 
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('upload-profile-picture/', views.upload_profile_picture, name='upload_profile_picture'),
     path('save-system-settings/', views.save_system_settings, name='save_system_settings'),
