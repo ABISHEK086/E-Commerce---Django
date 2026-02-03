@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,CreateView,UpdateView,DetailView,View
 from DjangoEcommerceApp.models import Categories,SubCategories,CustomUser,MerchantUser,Products,ProductAbout,ProductDetails,ProductMedia,ProductTransaction,ProductTags,StaffUser,CustomerUser
 from django.contrib.messages.views import SuccessMessageMixin 
-from django.core.files.storage import FileSystemStorage   
+from django.core.files.storage import FileSystemStorage    
 from django.contrib.messages.views import messages         
 from django.urls import reverse                
 from django.http import HttpResponseRedirect,HttpResponse 
