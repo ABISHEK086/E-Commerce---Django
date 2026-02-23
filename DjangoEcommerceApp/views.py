@@ -17,7 +17,7 @@ def adminLogin(request
     return render(request,"admin_templates/signin.html")
 
 def adminLoginProcess(request):
-    username=request.POST.get("username")
+    username=request.POST.get("username") 
     password=request.POST.get("password")
 
     user=authenticate(request=request,username=username,password=password)
