@@ -8,7 +8,7 @@ from django.contrib.messages.views import messages
 from django.urls import reverse                 
 from django.http import HttpResponseRedirect,HttpResponse    
 from django.db.models import Q               
-from DjangoEcommerce.settings import BASE_URL                   
+from DjangoEcommerce.settings import BASE_URL                    
 from django.views.decorators.csrf import csrf_exempt   
    
 @login_required(login_url="/admin/") 
