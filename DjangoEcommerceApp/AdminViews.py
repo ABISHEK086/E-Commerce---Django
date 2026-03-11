@@ -11,7 +11,7 @@ from django.db.models import Q
 from DjangoEcommerce.settings import BASE_URL                  
 from django.views.decorators.csrf import csrf_exempt  
   
-@login_required(login_url="/admin/")
+@login_required(login_url="/admin/") 
 def admin_home(request):
     return render(request, "home.html")  
 @login_required(login_url="/admin/")
